@@ -24,7 +24,7 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         /* Header */
-        header { padding: 20px 0; border-bottom: 1px solid #222; background-color: rgba(10, 10, 10, 0.9); position: fixed; width: 100%; top: 0; z-index: 1000;}
+        header { padding: 20px 0; border-bottom: 1px solid #222; background-color: rgba(10, 10, 10, 0.9); position: fixed; width: 100%; top: 0; z-index: 100;}
         .logo { font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
         .logo span { color: var(--primary); text-shadow: var(--primary-glow); }
 
@@ -32,9 +32,9 @@
         .hero { padding: 160px 0 100px 0; display: flex; align-items: center; justify-content: center; position: relative;}
         .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; text-align: left;}
         
-        .hero-text h1 { font-size: 3rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; line-height: 1.1;}
+        .hero-text h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1;}
         .hero-text h1 span { color: var(--primary); text-shadow: var(--primary-glow); }
-        .hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; }
+        .hero-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7;}
         
         .hero-cta { display: flex; gap: 20px;}
         .btn-hero-primary { 
@@ -58,10 +58,18 @@
         .hero-image { border-radius: 20px; overflow: hidden; box-shadow: var(--primary-glow); border: 2px solid var(--primary); transform: rotate(1deg);}
         .hero-image img { width: 100%; height: auto; display: block;}
 
+        /* Nova Seção: Benefícios (Estilo DaVinci) */
+        .benefits { padding: 60px 0; background-color: #0d0d0d; border-top: 1px solid #1a1a1a; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; }
+        .benefit-card { padding: 20px; }
+        .benefit-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .benefit-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #fff;}
+        .benefit-card p { color: var(--text-muted); font-size: 0.9rem; }
+
         /* Pricing Section */
         .pricing { padding: 80px 0; background: radial-gradient(circle at center, #1a0b2e 0%, #0a0a0a 70%);}
-        .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;}
-        .pricing-sub { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 60px auto;}
+        .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px;}
+        .pricing-sub { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 50px auto; font-size: 1.1rem;}
         
         .pricing-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
         
@@ -131,6 +139,26 @@
         .process-item h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;}
         .process-item p { color: var(--text-muted); font-size: 0.9rem; }
 
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
         /* Footer */
         footer { padding: 40px 0; text-align: center; border-top: 1px solid #222; color: #444; font-size: 0.8rem;}
 
@@ -142,7 +170,9 @@
             .hero-cta { justify-content: center; flex-direction: column; }
             .hero-image { transform: rotate(0deg); max-width: 500px; margin: 0 auto; }
             .hero-text p { font-size: 1rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
             .pricing-grid { flex-direction: column; align-items: center; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
         }
     </style>
 </head>
@@ -157,64 +187,83 @@
     <section class="hero">
         <div class="container">
             <div class="hero-text">
-                <h1>Restauração de Fotos em <span>Mítica 8K</span></h1>
-                <p>Reviva suas memórias mais preciosas com definição cinematográfica e colorização inteligente. A tecnologia que o tempo não consegue apagar.</p>
+                <h1>Transforme Fotos Antigas em <span>Imagens 8K</span></h1>
+                <p>A mágica da Inteligência Artificial avançada combinada com o olhar humano. Dê vida a fotos borradas, danificadas ou em preto e branco com um único clique.</p>
                 <div class="hero-cta">
-                    <a href="#pricing" class="btn-hero-primary">Restaurar Minha Foto</a>
-                    <a href="#process" class="btn-hero-secondary">Como Funciona</a>
+                    <a href="#pricing" class="btn-hero-primary">Restaurar Agora</a>
+                    <a href="#process" class="btn-hero-secondary">Ver Como Funciona</a>
                 </div>
             </div>
             <div class="hero-image">
-                <!-- Imagem do pacote básico puxada corretamente -->
-                <img src="basico.jpg" alt="Prova Antes/Depois Restauração">
+                <img src="basico.jpg" alt="Transformação de Foto com IA">
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova Seção: Estilo DaVinci (Mágica da IA) -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">✨</div>
+                    <h4>Nitidez Extrema</h4>
+                    <p>Nossa IA reconstrói detalhes faciais perdidos e transforma texturas borradas em alta definição cristalina.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎨</div>
+                    <h4>Colorização Realista</h4>
+                    <p>Diga adeus ao tom sépia. Injetamos cores vibrantes e naturais em fotografias antigas em preto e branco.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🪄</div>
+                    <h4>Reparo de Danos</h4>
+                    <p>Arranhões, rasgos e manchas de tempo são apagados magicamente, devolvendo a foto ao seu estado original.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="pricing" class="pricing">
         <div class="container">
-            <h2>Escolha seu Pacote</h2>
-            <p class="pricing-sub">Selecione a melhor oferta para transformar suas memórias. Pagamento seguro via Stripe.</p>
+            <h2>Escolha Seu Pacote Mágico</h2>
+            <p class="pricing-sub">Sem aplicativos complicados. Você escolhe, nós fazemos o trabalho pesado.</p>
             <div class="pricing-grid">
                 
                 <!-- Pacote Básico -->
                 <div class="price-card">
                     <div class="card-image">
-                        <!-- Imagem do pacote básico puxada corretamente -->
-                        <img src="basico.jpg" alt="Restauração Básica 8K">
+                        <img src="basico.jpg" alt="Restauração Básica">
                     </div>
-                    <h3>Básico</h3>
-                    <p class="desc">Ideal para testar o poder da restauração em uma memória especial.</p>
+                    <h3>Pacote Básico</h3>
+                    <p class="desc">A forma mais rápida de ver a mágica acontecer em uma memória especial.</p>
                     <div class="price-value">R$ 27,90 <span>/ único</span></div>
                     <ul class="features">
-                        <li>1 Fotografia Restaurada</li>
-                        <li>Upscaling para 8K</li>
-                        <li>Colorização Premium (se P&B)</li>
-                        <li>Remoção de Riscos e Manchas</li>
-                        <li>Entrega via WhatsApp VIP</li>
+                        <li>1 Foto Totalmente Restaurada</li>
+                        <li>Upscaling Mágico (8K)</li>
+                        <li>Colorização Automática</li>
+                        <li>Limpeza de Arranhões</li>
+                        <li>Arquivo Digital Direto no Celular</li>
                     </ul>
-                    <a href="https://buy.stripe.com/cNi00b9ptd085ZZ03D0RG00" class="btn-card">Restaurar Foto (R$ 27,90)</a>
+                    <a href="https://buy.stripe.com/cNi00b9ptd085ZZ03D0RG00" class="btn-card">Restaurar 1 Foto</a>
                 </div>
 
                 <!-- Pacote Premium -->
                 <div class="price-card featured">
-                    <div class="badge">Melhor Valor</div>
+                    <div class="badge">Mais Popular</div>
                     <div class="card-image">
-                        <!-- Imagem do pacote premium puxada corretamente -->
-                        <img src="premium.jpg" alt="Restauração Premium 8K">
+                        <img src="premium.jpg" alt="Restauração Premium">
                     </div>
-                    <h3>Premium</h3>
-                    <p class="desc">Preserve todo o seu álbum de família com o melhor custo-benefício.</p>
+                    <h3>Pacote Premium</h3>
+                    <p class="desc">Ideal para álbuns de família e coleções. O valor de custo por foto despenca.</p>
                     <div class="price-value">R$ 97,90 <span>/ único</span></div>
                     <ul class="features">
-                        <li>10 Fotografias Restauradas</li>
-                        <li>Apenas R$ 9,79 por foto</li>
-                        <li>Upscaling 8K em todas</li>
-                        <li>Colorização de Alta Precisão</li>
-                        <li>Ajuste de Luz Avançado</li>
-                        <li>Atendimento VIP WhatsApp</li>
+                        <li>Lote de 10 Fotos Restauradas</li>
+                        <li>Mágica 8K Aplicada em Todas</li>
+                        <li>Colorização e Correção de Luz</li>
+                        <li>Atendimento VIP Prioritário</li>
+                        <li>Apenas R$ 9,79 por imagem</li>
                     </ul>
-                    <a href="https://buy.stripe.com/6oU00b6dh4tC3RR6s10RG01" class="btn-card">Garantir Pacote (R$ 97,90)</a>
+                    <a href="https://buy.stripe.com/6oU00b6dh4tC3RR6s10RG01" class="btn-card">Restaurar 10 Fotos</a>
                 </div>
 
             </div>
@@ -223,30 +272,37 @@
 
     <section id="process" class="process">
         <div class="container">
-            <h2>Como <span>Funciona</span></h2>
+            <h2>Processo Sem <span>Complicação</span></h2>
             <div class="process-grid">
                 
                 <div class="process-item">
-                    <div class="process-icon">01</div>
-                    <h4>Escolha seu Pacote</h4>
-                    <p>Selecione a melhor oferta acima. O pagamento é 100% seguro e processado pela Stripe.</p>
+                    <div class="process-icon">💳</div>
+                    <h4>1. Confirme o Pedido</h4>
+                    <p>Pagamento rápido e seguro em nosso checkout blindado (Stripe).</p>
                 </div>
 
                 <div class="process-item">
-                    <div class="process-icon">02</div>
-                    <h4>Conexão WhatsApp</h4>
-                    <p>Após o pagamento, você é redirecionado automaticamente ao nosso WhatsApp VIP.</p>
+                    <div class="process-icon">📱</div>
+                    <h4>2. Envie Pelo WhatsApp</h4>
+                    <p>Você é redirecionado na mesma hora para o nosso WhatsApp. Basta mandar a foto.</p>
                 </div>
 
                 <div class="process-item">
-                    <div class="process-icon">03</div>
-                    <h4>Envio e Mágica</h4>
-                    <p>Envie suas fotos digitais. Nossa equipe inicia a restauração 8K imediatamente.</p>
+                    <div class="process-icon">🚀</div>
+                    <h4>3. Receba a Mágica</h4>
+                    <p>A tecnologia entra em ação e devolvemos sua foto impecável no mesmo chat.</p>
                 </div>
 
             </div>
         </div>
     </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5534998718340?text=Olá!%20Tenho%20dúvidas%20sobre%20a%20restauração%20de%20fotos." class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 32 32" width="32" height="32">
+            <path fill="#FFF" d="M16.05 2.15c-7.7 0-13.9 6.2-13.9 13.9 0 2.45.65 4.85 1.85 6.95L2.5 30l7.15-1.45c2.05 1.1 4.35 1.7 6.8 1.7 7.7 0 13.9-6.2 13.9-13.9 0-7.7-6.2-13.9-13.9-13.9zm0 25.1c-2.1 0-4.1-.55-5.9-1.6l-.4-.25-4.4.9.9-4.25-.3-.45c-1.15-1.85-1.8-3.95-1.8-6.15 0-6.35 5.2-11.55 11.55-11.55 6.35 0 11.55 5.2 11.55 11.55 0 6.35-5.2 11.55-11.55 11.55zm6.3-8.6c-.35-.15-2.05-1-2.35-1.15-.3-.1-.5-.15-.7.15-.2.35-.9 1.15-1.1 1.35-.2.25-.4.25-.75.1-1.6-.75-3.05-1.85-4.2-3.15-.3-.35.05-.3.55-1.3.1-.2.05-.35-.05-.55-.1-.15-.7-1.7-.95-2.35-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.75.35-.9 1-1.25 2.45-.6 3.9 1 2.2 2.65 4.15 4.7 5.4 1.7 1 2.7 1.3 3.9 1.65 1.25.35 2.4.3 3.3.15 1.05-.15 2.05-.85 2.35-1.7.3-.85.3-1.6.2-1.75-.1-.15-.3-.25-.65-.4z"/>
+        </svg>
+    </a>
 
     <footer>
         <div class="container">
