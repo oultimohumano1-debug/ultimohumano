@@ -55,10 +55,11 @@
         }
         .btn-hero-secondary:hover { border-color: var(--primary); color: var(--primary); background-color: rgba(138,43,226,0.05);}
 
-        .hero-image { border-radius: 20px; overflow: hidden; box-shadow: var(--primary-glow); border: 2px solid var(--primary); transform: rotate(1deg);}
-        .hero-image img { width: 100%; height: auto; display: block;}
+        /* Configuração do Vídeo da Hero */
+        .hero-media { border-radius: 20px; overflow: hidden; box-shadow: var(--primary-glow); border: 2px solid var(--primary); transform: rotate(1deg);}
+        .hero-media video { width: 100%; height: auto; display: block; object-fit: cover; }
 
-        /* Nova Seção: Benefícios (Estilo DaVinci) */
+        /* Benefícios (Estilo DaVinci) */
         .benefits { padding: 60px 0; background-color: #0d0d0d; border-top: 1px solid #1a1a1a; }
         .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; }
         .benefit-card { padding: 20px; }
@@ -168,7 +169,7 @@
             .hero .container { grid-template-columns: 1fr; text-align: center; gap: 40px;}
             .hero-text h1 { font-size: 2.3rem; }
             .hero-cta { justify-content: center; flex-direction: column; }
-            .hero-image { transform: rotate(0deg); max-width: 500px; margin: 0 auto; }
+            .hero-media { transform: rotate(0deg); max-width: 500px; margin: 0 auto; }
             .hero-text p { font-size: 1rem; }
             .benefits-grid { grid-template-columns: 1fr; }
             .pricing-grid { flex-direction: column; align-items: center; }
@@ -194,13 +195,19 @@
                     <a href="#process" class="btn-hero-secondary">Ver Como Funciona</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="basico.jpg" alt="Transformação de Foto com IA">
+            
+            <!-- AQUI ESTÁ A MÁGICA DO VÍDEO -->
+            <div class="hero-media">
+                <video autoplay loop muted playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                    Seu navegador não suporta a tag de vídeo.
+                </video>
             </div>
+            
         </div>
     </section>
 
-    <!-- Nova Seção: Estilo DaVinci (Mágica da IA) -->
+    <!-- Seção Benefícios -->
     <section class="benefits">
         <div class="container">
             <div class="benefits-grid">
@@ -232,6 +239,7 @@
                 <!-- Pacote Básico -->
                 <div class="price-card">
                     <div class="card-image">
+                        <!-- Imagem do pacote básico mantida para a tabela de preços -->
                         <img src="basico.jpg" alt="Restauração Básica">
                     </div>
                     <h3>Pacote Básico</h3>
@@ -251,6 +259,7 @@
                 <div class="price-card featured">
                     <div class="badge">Mais Popular</div>
                     <div class="card-image">
+                        <!-- Imagem do pacote premium mantida para a tabela de preços -->
                         <img src="premium.jpg" alt="Restauração Premium">
                     </div>
                     <h3>Pacote Premium</h3>
