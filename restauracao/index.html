@@ -9,37 +9,65 @@
         :root {
             --bg-base: #0a0a0a;
             --bg-card: #141414;
-            --primary: #8a2be2; /* Neon Purple */
+            --primary: #8a2be2;
             --primary-glow: 0 0 15px rgba(138, 43, 226, 0.7);
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --success: #00E676;
+            --border: #222;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth;}
         
         body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
         
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         /* Header */
-        header { padding: 20px 0; border-bottom: 1px solid #222; text-align: center; }
-        .logo { font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        header { padding: 20px 0; border-bottom: 1px solid #222; background-color: rgba(10, 10, 10, 0.9); position: fixed; width: 100%; top: 0; z-index: 1000;}
+        .logo { font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
         .logo span { color: var(--primary); text-shadow: var(--primary-glow); }
 
         /* Hero */
-        .hero { padding: 80px 0; text-align: center; }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1;}
-        .hero h1 span { color: var(--primary); text-shadow: var(--primary-glow); }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px auto; }
+        .hero { padding: 160px 0 100px 0; display: flex; align-items: center; justify-content: center; position: relative;}
+        .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; text-align: left;}
+        
+        .hero-text h1 { font-size: 3rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; line-height: 1.1;}
+        .hero-text h1 span { color: var(--primary); text-shadow: var(--primary-glow); }
+        .hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; }
+        
+        .hero-cta { display: flex; gap: 20px;}
+        .btn-hero-primary { 
+            display: inline-block; padding: 18px 30px; 
+            background: var(--primary); border: none;
+            color: #fff; text-align: center; text-decoration: none; 
+            border-radius: 8px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
+            transition: all 0.3s ease; box-shadow: var(--primary-glow);
+        }
+        .btn-hero-primary:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.9); transform: translateY(-3px);}
+
+        .btn-hero-secondary { 
+            display: inline-block; padding: 18px 30px; 
+            background: transparent; border: 2px solid #333;
+            color: var(--text-muted); text-align: center; text-decoration: none; 
+            border-radius: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem;
+            transition: all 0.3s ease; 
+        }
+        .btn-hero-secondary:hover { border-color: var(--primary); color: var(--primary); background-color: rgba(138,43,226,0.05);}
+
+        .hero-image { border-radius: 20px; overflow: hidden; box-shadow: var(--primary-glow); border: 2px solid var(--primary); transform: rotate(1deg);}
+        .hero-image img { width: 100%; height: auto; display: block;}
 
         /* Pricing Section */
-        .pricing { padding: 60px 0; background: radial-gradient(circle at center, #1a0b2e 0%, #0a0a0a 70%);}
-        .pricing-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 40px;}
+        .pricing { padding: 80px 0; background: radial-gradient(circle at center, #1a0b2e 0%, #0a0a0a 70%);}
+        .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;}
+        .pricing-sub { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 60px auto;}
+        
+        .pricing-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
         
         .price-card { 
             background: var(--bg-card); 
-            border: 1px solid #222; 
+            border: 1px solid var(--border); 
             border-radius: 16px; 
             padding: 40px; 
             width: 100%; 
@@ -53,16 +81,12 @@
 
         .card-image { 
             width: 100%; 
-            height: 200px; 
-            background-color: #000; 
-            border-radius: 8px; 
+            height: 280px; 
+            border-radius: 12px; 
             margin-bottom: 25px; 
             overflow: hidden; 
             border: 1px solid #333;
-            display: flex; align-items: center; justify-content: center; color: #444; font-weight: 600;
         }
-        
-        /* Placeholder for User Images - Replace 'src' with actual uploaded image URLs */
         .card-image img { width: 100%; height: 100%; object-fit: cover; }
 
         .badge { 
@@ -83,18 +107,18 @@
         .features li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;}
         .features li::before { content: '✓'; color: var(--success); font-weight: 700; }
 
-        .btn { 
+        .btn-card { 
             display: block; width: 100%; padding: 15px; 
             background: transparent; border: 2px solid var(--primary); 
             color: var(--primary); text-align: center; text-decoration: none; 
             border-radius: 8px; font-weight: 700; text-transform: uppercase; 
             transition: all 0.3s ease; 
         }
-        .btn:hover { background: var(--primary); color: #fff; box-shadow: var(--primary-glow); }
+        .btn-card:hover { background: var(--primary); color: #fff; box-shadow: var(--primary-glow); }
 
         .price-card.featured { border-color: var(--primary); box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); }
-        .price-card.featured .btn { background: var(--primary); color: #fff; }
-        .price-card.featured .btn:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.8); }
+        .price-card.featured .btn-card { background: var(--primary); color: #fff; }
+        .price-card.featured .btn-card:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.8); }
 
         /* How it Works Section */
         .process { padding: 80px 0; background: #080808; border-top: 1px solid #111;}
@@ -111,8 +135,13 @@
         footer { padding: 40px 0; text-align: center; border-top: 1px solid #222; color: #444; font-size: 0.8rem;}
 
         /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
+        @media (max-width: 900px) {
+            .hero { padding: 140px 0 60px 0; }
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 40px;}
+            .hero-text h1 { font-size: 2.3rem; }
+            .hero-cta { justify-content: center; flex-direction: column; }
+            .hero-image { transform: rotate(0deg); max-width: 500px; margin: 0 auto; }
+            .hero-text p { font-size: 1rem; }
             .pricing-grid { flex-direction: column; align-items: center; }
         }
     </style>
@@ -127,66 +156,74 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Restauração e Colorização <span>8K AI</span></h1>
-            <p>Transformamos memórias foscas e danificadas em obras de arte digitais com resolução cinematográfica. Tecnologia de ponta, toque humano.</p>
+            <div class="hero-text">
+                <h1>Restauração de Fotos em <span>Mítica 8K</span></h1>
+                <p>Reviva suas memórias mais preciosas com definição cinematográfica e colorização inteligente. A tecnologia que o tempo não consegue apagar.</p>
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn-hero-primary">Restaurar Minha Foto</a>
+                    <a href="#process" class="btn-hero-secondary">Como Funciona</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Imagem do pacote básico puxada corretamente -->
+                <img src="basico.jpg" alt="Prova Antes/Depois Restauração">
+            </div>
         </div>
     </section>
 
-    <section class="pricing">
+    <section id="pricing" class="pricing">
         <div class="container">
+            <h2>Escolha seu Pacote</h2>
+            <p class="pricing-sub">Selecione a melhor oferta para transformar suas memórias. Pagamento seguro via Stripe.</p>
             <div class="pricing-grid">
                 
                 <!-- Pacote Básico -->
                 <div class="price-card">
                     <div class="card-image">
-                        <!-- Instuções: Upload 'image_20.png' to GitHub and put URL here -->
-                        <img src="" alt="Conceito Antes/Depois Básico">
-                        <span>[Upload image_20.png]</span>
+                        <!-- Imagem do pacote básico puxada corretamente -->
+                        <img src="basico.jpg" alt="Restauração Básica 8K">
                     </div>
                     <h3>Básico</h3>
-                    <p class="desc">Ideal para testar a mítica restauração AI em uma memória especial.</p>
-                    <div class="price-value">R$ 27,90 <span>/ pagamento único</span></div>
+                    <p class="desc">Ideal para testar o poder da restauração em uma memória especial.</p>
+                    <div class="price-value">R$ 27,90 <span>/ único</span></div>
                     <ul class="features">
                         <li>1 Fotografia Restaurada</li>
-                        <li>Upscaling para Resolução 8K</li>
-                        <li>Colorização Inteligente (se P&B)</li>
+                        <li>Upscaling para 8K</li>
+                        <li>Colorização Premium (se P&B)</li>
                         <li>Remoção de Riscos e Manchas</li>
-                        <li>Entrega via WhatsApp</li>
+                        <li>Entrega via WhatsApp VIP</li>
                     </ul>
-                    <!-- Link Stripe Básico -->
-                    <a href="https://buy.stripe.com/cNi00b9ptd085ZZ03D0RG00" class="btn">Restaurar Minha Foto</a>
+                    <a href="https://buy.stripe.com/cNi00b9ptd085ZZ03D0RG00" class="btn-card">Restaurar Foto (R$ 27,90)</a>
                 </div>
 
                 <!-- Pacote Premium -->
                 <div class="price-card featured">
                     <div class="badge">Melhor Valor</div>
                     <div class="card-image">
-                        <!-- Instuções: Upload 'image_29.png' to GitHub and put URL here -->
-                        <img src="" alt="Conceito Antes/Depois Premium Grid">
-                        <span>[Upload image_29.png]</span>
+                        <!-- Imagem do pacote premium puxada corretamente -->
+                        <img src="premium.jpg" alt="Restauração Premium 8K">
                     </div>
                     <h3>Premium</h3>
-                    <p class="desc">Restauração completa para preservar todo o seu álbum de família.</p>
-                    <div class="price-value">R$ 97,90 <span>/ pagamento único</span></div>
+                    <p class="desc">Preserve todo o seu álbum de família com o melhor custo-benefício.</p>
+                    <div class="price-value">R$ 97,90 <span>/ único</span></div>
                     <ul class="features">
                         <li>10 Fotografias Restauradas</li>
                         <li>Apenas R$ 9,79 por foto</li>
-                        <li>Upscaling 8K em todas as imagens</li>
-                        <li>Colorização Premium</li>
-                        <li>Correção de Cor e Luz Avançada</li>
-                        <li>Suporte VIP via WhatsApp</li>
+                        <li>Upscaling 8K em todas</li>
+                        <li>Colorização de Alta Precisão</li>
+                        <li>Ajuste de Luz Avançado</li>
+                        <li>Atendimento VIP WhatsApp</li>
                     </ul>
-                    <!-- Link Stripe Premium - FORNECIDO PELO USUÁRIO -->
-                    <a href="https://buy.stripe.com/6oU00b6dh4tC3RR6s10RG01" class="btn">Garantir Meu Pacote</a>
+                    <a href="https://buy.stripe.com/6oU00b6dh4tC3RR6s10RG01" class="btn-card">Garantir Pacote (R$ 97,90)</a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section class="process">
+    <section id="process" class="process">
         <div class="container">
-            <h2>Como Funciona a <span>Mágica</span></h2>
+            <h2>Como <span>Funciona</span></h2>
             <div class="process-grid">
                 
                 <div class="process-item">
@@ -198,13 +235,13 @@
                 <div class="process-item">
                     <div class="process-icon">02</div>
                     <h4>Conexão WhatsApp</h4>
-                    <p>Após o pagamento, você é redirecionado automaticamente ao nosso WhatsApp VIP (+55 34 99871-8340).</p>
+                    <p>Após o pagamento, você é redirecionado automaticamente ao nosso WhatsApp VIP.</p>
                 </div>
 
                 <div class="process-item">
                     <div class="process-icon">03</div>
-                    <h4>Envio e Restauração</h4>
-                    <p>Envie suas fotos digitais (ou scans). Nossa AI e especialistas iniciam a restauração 8K imediatamente.</p>
+                    <h4>Envio e Mágica</h4>
+                    <p>Envie suas fotos digitais. Nossa equipe inicia a restauração 8K imediatamente.</p>
                 </div>
 
             </div>
@@ -213,7 +250,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 O Último Humano. Uberlândia/MG.</p>
+            <p>&copy; 2026 O Último Humano. Uberlândia/MG.</p>
             <p>Atendimento humano via WhatsApp.</p>
         </div>
     </footer>
