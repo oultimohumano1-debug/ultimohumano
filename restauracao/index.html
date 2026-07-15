@@ -31,7 +31,7 @@
         .logo { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 3px; }
         .logo span { color: var(--primary); text-shadow: var(--primary-glow); }
 
-        /* ========= NOVA HERO EDITORIAL (FUNDO DE VÍDEO) ========= */
+        /* ========= HERO EDITORIAL (FUNDO DE VÍDEO) ========= */
         .hero { 
             position: relative; 
             min-height: 100vh; /* Ocupa 100% da altura da tela */
@@ -81,7 +81,7 @@
             text-transform: uppercase;
         }
 
-        /* Título Gigante Serifado (Igual a referência) */
+        /* Título Gigante Serifado */
         .hero-text h1 { 
             font-family: 'Playfair Display', serif;
             font-size: 7.5rem; 
@@ -248,27 +248,23 @@
 
     <header>
         <div class="container">
-            <!-- Logo minimalista para combinar com o fundo em tela cheia -->
             <div class="logo">O ÚLTIMO <span>HUMANO</span></div>
         </div>
     </header>
 
-    <!-- NOVA HERO EDITORIAL COM VÍDEO NO FUNDO -->
     <section class="hero">
         <video autoplay loop muted playsinline class="hero-video-bg">
-            <!-- ATENÇÃO: O nome do vídeo deve ser exatamente video.mp4 no GitHub -->
             <source src="video.mp4" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
         
-        <!-- Máscara de degradê sobre o vídeo -->
         <div class="hero-overlay"></div>
 
         <div class="container">
+            <!-- AQUI ESTÁ A COPY NOVA (OPÇÃO 2) APLICADA -->
             <div class="hero-text">
-                <div class="hero-subheading">Inteligência Artificial</div>
-                <!-- Título gigante com a fonte Playfair Display -->
-                <h1>Mítica<br><span>8K</span></h1>
+                <div class="hero-subheading">O Resgate da Sua História</div>
+                <h1>Memórias<br><span>Vivas</span></h1>
                 <p>Reviva suas memórias mais preciosas com definição cinematográfica e colorização inteligente. A tecnologia que o tempo não consegue apagar.</p>
                 <div class="hero-cta">
                     <a href="#pricing" class="btn-hero-primary">Restaurar Agora</a>
