@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restauração 8K AI | O Último Humano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Fontes do Google: Montserrat para textos base e Playfair Display para o título gigante estilo Editorial -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-base: #0a0a0a;
@@ -17,58 +20,112 @@
             --border: #222;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth;}
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth;}
         
-        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; font-family: 'Montserrat', sans-serif;}
         
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%;}
 
-        /* Header */
-        header { padding: 20px 0; border-bottom: 1px solid #222; background-color: rgba(10, 10, 10, 0.9); position: fixed; width: 100%; top: 0; z-index: 100;}
-        .logo { font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
+        /* Header Minimalista Transparente */
+        header { padding: 25px 0; position: absolute; width: 100%; top: 0; z-index: 100; background: transparent;}
+        .logo { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 3px; }
         .logo span { color: var(--primary); text-shadow: var(--primary-glow); }
 
-        /* Hero */
-        .hero { padding: 160px 0 100px 0; display: flex; align-items: center; justify-content: center; position: relative;}
-        .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; text-align: left;}
+        /* ========= NOVA HERO EDITORIAL (FUNDO DE VÍDEO) ========= */
+        .hero { 
+            position: relative; 
+            min-height: 100vh; /* Ocupa 100% da altura da tela */
+            display: flex; 
+            align-items: center; 
+            overflow: hidden;
+        }
+
+        /* O Vídeo fica absoluto no fundo */
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Gradiente escuro para garantir que o texto seja legível em cima do vídeo */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.1) 100%);
+            z-index: 1;
+        }
+
+        /* O conteúdo flutua acima do vídeo e do overlay */
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
         
-        .hero-text h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1;}
-        .hero-text h1 span { color: var(--primary); text-shadow: var(--primary-glow); }
-        .hero-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7;}
+        .hero-text { max-width: 650px; padding-top: 80px;}
         
-        .hero-cta { display: flex; gap: 20px;}
+        /* Subtítulo estilo revista */
+        .hero-subheading {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Título Gigante Serifado (Igual a referência) */
+        .hero-text h1 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 7.5rem; 
+            line-height: 0.85; 
+            margin-bottom: 30px; 
+            text-transform: uppercase; 
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+        .hero-text h1 span { color: var(--primary); text-shadow: var(--primary-glow); display: block;}
+        
+        .hero-text p { font-size: 1.2rem; color: #e0e0e0; margin-bottom: 40px; line-height: 1.6; max-width: 500px; font-weight: 400;}
+        
+        .hero-cta { display: flex; gap: 20px; flex-wrap: wrap;}
+        
         .btn-hero-primary { 
-            display: inline-block; padding: 18px 30px; 
+            display: inline-block; padding: 18px 35px; 
             background: var(--primary); border: none;
             color: #fff; text-align: center; text-decoration: none; 
-            border-radius: 8px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
-            transition: all 0.3s ease; box-shadow: var(--primary-glow);
+            border-radius: 4px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
+            transition: all 0.3s ease; box-shadow: var(--primary-glow); letter-spacing: 1px;
         }
-        .btn-hero-primary:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.9); transform: translateY(-3px);}
+        .btn-hero-primary:hover { box-shadow: 0 0 30px rgba(138, 43, 226, 0.9); transform: translateY(-3px);}
 
         .btn-hero-secondary { 
-            display: inline-block; padding: 18px 30px; 
-            background: transparent; border: 2px solid #333;
-            color: var(--text-muted); text-align: center; text-decoration: none; 
-            border-radius: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem;
-            transition: all 0.3s ease; 
+            display: inline-block; padding: 18px 35px; 
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff; text-align: center; text-decoration: none; 
+            border-radius: 4px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem;
+            transition: all 0.3s ease; backdrop-filter: blur(5px); letter-spacing: 1px;
         }
-        .btn-hero-secondary:hover { border-color: var(--primary); color: var(--primary); background-color: rgba(138,43,226,0.05);}
+        .btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.2); }
+        /* ======================================================= */
 
-        /* Configuração do Vídeo da Hero */
-        .hero-media { border-radius: 20px; overflow: hidden; box-shadow: var(--primary-glow); border: 2px solid var(--primary); transform: rotate(1deg);}
-        .hero-media video { width: 100%; height: auto; display: block; object-fit: cover; }
-
-        /* Benefícios (Estilo DaVinci) */
-        .benefits { padding: 60px 0; background-color: #0d0d0d; border-top: 1px solid #1a1a1a; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; }
+        /* Benefícios */
+        .benefits { padding: 80px 0; background-color: var(--bg-base); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
         .benefit-card { padding: 20px; }
-        .benefit-icon { font-size: 2.5rem; margin-bottom: 15px; }
-        .benefit-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #fff;}
-        .benefit-card p { color: var(--text-muted); font-size: 0.9rem; }
+        .benefit-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .benefit-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
+        .benefit-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;}
 
         /* Pricing Section */
-        .pricing { padding: 80px 0; background: radial-gradient(circle at center, #1a0b2e 0%, #0a0a0a 70%);}
+        .pricing { padding: 80px 0; background: radial-gradient(circle at top, #1a0b2e 0%, #0a0a0a 70%);}
         .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px;}
         .pricing-sub { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 50px auto; font-size: 1.1rem;}
         
@@ -77,10 +134,10 @@
         .price-card { 
             background: var(--bg-card); 
             border: 1px solid var(--border); 
-            border-radius: 16px; 
+            border-radius: 12px; 
             padding: 40px; 
             width: 100%; 
-            max-width: 380px; 
+            max-width: 400px; 
             transition: all 0.3s ease; 
             position: relative;
             display: flex; flex-direction: column;
@@ -90,8 +147,8 @@
 
         .card-image { 
             width: 100%; 
-            height: 280px; 
-            border-radius: 12px; 
+            height: 300px; 
+            border-radius: 8px; 
             margin-bottom: 25px; 
             overflow: hidden; 
             border: 1px solid #333;
@@ -101,79 +158,89 @@
         .badge { 
             position: absolute; top: -15px; right: 20px; 
             background: var(--primary); color: #fff; 
-            padding: 5px 15px; border-radius: 20px; 
+            padding: 6px 18px; border-radius: 20px; 
             font-weight: 700; font-size: 0.8rem; text-transform: uppercase; 
             box-shadow: var(--primary-glow);
         }
 
         .price-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase;}
-        .price-card .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; height: 50px;}
+        .price-card .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; height: 50px;}
         
-        .price-value { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: baseline; gap: 5px;}
+        .price-value { font-size: 2.8rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: baseline; gap: 8px;}
         .price-value span { font-size: 1rem; color: var(--text-muted); font-weight: 400;}
 
         .features { list-style: none; margin-bottom: 40px; flex-grow: 1;}
-        .features li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;}
-        .features li::before { content: '✓'; color: var(--success); font-weight: 700; }
+        .features li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; display: flex; align-items: center; gap: 12px;}
+        .features li::before { content: '✓'; color: var(--primary); font-weight: 900; font-size: 1.1rem;}
 
         .btn-card { 
-            display: block; width: 100%; padding: 15px; 
+            display: block; width: 100%; padding: 18px; 
             background: transparent; border: 2px solid var(--primary); 
             color: var(--primary); text-align: center; text-decoration: none; 
-            border-radius: 8px; font-weight: 700; text-transform: uppercase; 
-            transition: all 0.3s ease; 
+            border-radius: 4px; font-weight: 700; text-transform: uppercase; 
+            transition: all 0.3s ease; letter-spacing: 1px;
         }
         .btn-card:hover { background: var(--primary); color: #fff; box-shadow: var(--primary-glow); }
 
-        .price-card.featured { border-color: var(--primary); box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); }
+        .price-card.featured { border-color: var(--primary); box-shadow: 0 0 20px rgba(138, 43, 226, 0.2); }
         .price-card.featured .btn-card { background: var(--primary); color: #fff; }
         .price-card.featured .btn-card:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.8); }
 
-        /* How it Works Section */
-        .process { padding: 80px 0; background: #080808; border-top: 1px solid #111;}
-        .process h2 { text-align: center; font-size: 2.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
-        .process h2 span { color: var(--primary); }
+        /* Processo */
+        .process { padding: 80px 0; background: #050505; border-top: 1px solid #111;}
+        .process h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 60px; }
         
-        .process-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
-        .process-item { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; padding: 30px; width: 100%; max-width: 320px; text-align: center;}
-        .process-icon { font-size: 2rem; color: var(--primary); text-shadow: var(--primary-glow); margin-bottom: 20px; font-weight: 800;}
-        .process-item h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;}
-        .process-item p { color: var(--text-muted); font-size: 0.9rem; }
+        .process-grid { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+        .process-item { background: var(--bg-card); border: 1px solid #222; border-radius: 8px; padding: 40px 30px; width: 100%; max-width: 340px; text-align: center;}
+        .process-icon { font-size: 2.5rem; margin-bottom: 20px;}
+        .process-item h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;}
+        .process-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;}
 
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
+        /* Floating Buttons */
+        .float-btn {
             position: fixed;
             width: 60px;
             height: 60px;
             bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #FFF;
             border-radius: 50px;
-            text-align: center;
-            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 1000;
             transition: transform 0.3s ease;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        .float-btn:hover { transform: scale(1.1); }
+        
+        .whatsapp-float {
+            right: 30px;
+            background-color: #25d366;
+            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .share-float {
+            left: 30px;
+            background-color: var(--primary);
+            box-shadow: var(--primary-glow);
+            color: #fff;
+        }
 
-        /* Footer */
-        footer { padding: 40px 0; text-align: center; border-top: 1px solid #222; color: #444; font-size: 0.8rem;}
+        footer { padding: 50px 0; text-align: center; border-top: 1px solid #222; color: #555; font-size: 0.85rem;}
 
         /* Mobile Responsive */
         @media (max-width: 900px) {
-            .hero { padding: 140px 0 60px 0; }
-            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 40px;}
-            .hero-text h1 { font-size: 2.3rem; }
-            .hero-cta { justify-content: center; flex-direction: column; }
-            .hero-media { transform: rotate(0deg); max-width: 500px; margin: 0 auto; }
-            .hero-text p { font-size: 1rem; }
-            .benefits-grid { grid-template-columns: 1fr; }
+            .hero-text { padding-top: 40px; text-align: center; }
+            .hero-overlay { background: rgba(10,10,10,0.7); } /* Mais escuro no celular para leitura */
+            .hero-text h1 { font-size: 4.5rem; line-height: 0.9; margin-bottom: 20px;}
+            .hero-text p { margin: 0 auto 30px auto; }
+            .hero-cta { justify-content: center; }
+            .benefits-grid { grid-template-columns: 1fr; gap: 20px;}
             .pricing-grid { flex-direction: column; align-items: center; }
-            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .float-btn { bottom: 20px; width: 50px; height: 50px; }
+            .whatsapp-float { right: 20px; }
+            .share-float { left: 20px; }
         }
     </style>
 </head>
@@ -181,29 +248,33 @@
 
     <header>
         <div class="container">
+            <!-- Logo minimalista para combinar com o fundo em tela cheia -->
             <div class="logo">O ÚLTIMO <span>HUMANO</span></div>
         </div>
     </header>
 
+    <!-- NOVA HERO EDITORIAL COM VÍDEO NO FUNDO -->
     <section class="hero">
+        <video autoplay loop muted playsinline class="hero-video-bg">
+            <!-- ATENÇÃO: O nome do vídeo deve ser exatamente video.mp4 no GitHub -->
+            <source src="video.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        
+        <!-- Máscara de degradê sobre o vídeo -->
+        <div class="hero-overlay"></div>
+
         <div class="container">
             <div class="hero-text">
-                <h1>Transforme Fotos Antigas em <span>Imagens 8K</span></h1>
-                <p>A mágica da Inteligência Artificial avançada combinada com o olhar humano. Dê vida a fotos borradas, danificadas ou em preto e branco com um único clique.</p>
+                <div class="hero-subheading">Inteligência Artificial</div>
+                <!-- Título gigante com a fonte Playfair Display -->
+                <h1>Mítica<br><span>8K</span></h1>
+                <p>Reviva suas memórias mais preciosas com definição cinematográfica e colorização inteligente. A tecnologia que o tempo não consegue apagar.</p>
                 <div class="hero-cta">
                     <a href="#pricing" class="btn-hero-primary">Restaurar Agora</a>
-                    <a href="#process" class="btn-hero-secondary">Ver Como Funciona</a>
+                    <a href="#process" class="btn-hero-secondary">Ver Processo</a>
                 </div>
             </div>
-            
-            <!-- AQUI ESTÁ A MÁGICA DO VÍDEO -->
-            <div class="hero-media">
-                <video autoplay loop muted playsinline>
-                    <source src="video.mp4" type="video/mp4">
-                    Seu navegador não suporta a tag de vídeo.
-                </video>
-            </div>
-            
         </div>
     </section>
 
@@ -239,7 +310,6 @@
                 <!-- Pacote Básico -->
                 <div class="price-card">
                     <div class="card-image">
-                        <!-- Imagem do pacote básico mantida para a tabela de preços -->
                         <img src="basico.jpg" alt="Restauração Básica">
                     </div>
                     <h3>Pacote Básico</h3>
@@ -259,7 +329,6 @@
                 <div class="price-card featured">
                     <div class="badge">Mais Popular</div>
                     <div class="card-image">
-                        <!-- Imagem do pacote premium mantida para a tabela de preços -->
                         <img src="premium.jpg" alt="Restauração Premium">
                     </div>
                     <h3>Pacote Premium</h3>
@@ -281,33 +350,44 @@
 
     <section id="process" class="process">
         <div class="container">
-            <h2>Processo Sem <span>Complicação</span></h2>
+            <h2>Como Funciona</h2>
             <div class="process-grid">
                 
                 <div class="process-item">
                     <div class="process-icon">💳</div>
-                    <h4>1. Confirme o Pedido</h4>
-                    <p>Pagamento rápido e seguro em nosso checkout blindado (Stripe).</p>
+                    <h4>1. Pagamento</h4>
+                    <p>Escolha o pacote ideal e pague com segurança através do nosso checkout blindado da Stripe.</p>
                 </div>
 
                 <div class="process-item">
                     <div class="process-icon">📱</div>
-                    <h4>2. Envie Pelo WhatsApp</h4>
-                    <p>Você é redirecionado na mesma hora para o nosso WhatsApp. Basta mandar a foto.</p>
+                    <h4>2. Envio</h4>
+                    <p>Após a compra, você é redirecionado ao nosso WhatsApp VIP. Basta enviar suas fotos pelo chat.</p>
                 </div>
 
                 <div class="process-item">
                     <div class="process-icon">🚀</div>
-                    <h4>3. Receba a Mágica</h4>
-                    <p>A tecnologia entra em ação e devolvemos sua foto impecável no mesmo chat.</p>
+                    <h4>3. Recebimento</h4>
+                    <p>Nossa equipe aplica a tecnologia 8K e devolvemos suas obras de arte impecáveis no mesmo WhatsApp.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5534998718340?text=Olá!%20Tenho%20dúvidas%20sobre%20a%20restauração%20de%20fotos." class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+    <!-- Botão Flutuante de Compartilhamento -->
+    <button id="btn-share" class="float-btn share-float" aria-label="Compartilhar Página">
+        <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+    </button>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5534998718340?text=Olá!%20Tenho%20dúvidas%20sobre%20a%20restauração%20de%20fotos." class="float-btn whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
         <svg viewBox="0 0 32 32" width="32" height="32">
             <path fill="#FFF" d="M16.05 2.15c-7.7 0-13.9 6.2-13.9 13.9 0 2.45.65 4.85 1.85 6.95L2.5 30l7.15-1.45c2.05 1.1 4.35 1.7 6.8 1.7 7.7 0 13.9-6.2 13.9-13.9 0-7.7-6.2-13.9-13.9-13.9zm0 25.1c-2.1 0-4.1-.55-5.9-1.6l-.4-.25-4.4.9.9-4.25-.3-.45c-1.15-1.85-1.8-3.95-1.8-6.15 0-6.35 5.2-11.55 11.55-11.55 6.35 0 11.55 5.2 11.55 11.55 0 6.35-5.2 11.55-11.55 11.55zm6.3-8.6c-.35-.15-2.05-1-2.35-1.15-.3-.1-.5-.15-.7.15-.2.35-.9 1.15-1.1 1.35-.2.25-.4.25-.75.1-1.6-.75-3.05-1.85-4.2-3.15-.3-.35.05-.3.55-1.3.1-.2.05-.35-.05-.55-.1-.15-.7-1.7-.95-2.35-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.75.35-.9 1-1.25 2.45-.6 3.9 1 2.2 2.65 4.15 4.7 5.4 1.7 1 2.7 1.3 3.9 1.65 1.25.35 2.4.3 3.3.15 1.05-.15 2.05-.85 2.35-1.7.3-.85.3-1.6.2-1.75-.1-.15-.3-.25-.65-.4z"/>
         </svg>
@@ -320,5 +400,29 @@
         </div>
     </footer>
 
+    <!-- Script de Compartilhamento -->
+    <script>
+        document.getElementById('btn-share').addEventListener('click', async () => {
+            const shareData = {
+                title: 'Restauração de Fotos 8K | O Último Humano',
+                text: 'Olha que incrível! Eles restauram fotos antigas e borradas com Inteligência Artificial e entregam em 8K.',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    console.log('Compartilhamento cancelado ou falhou', err);
+                }
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link da página copiado! Agora é só colar e enviar para seus amigos.');
+                }).catch(err => {
+                    console.error('Erro ao copiar o link: ', err);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
