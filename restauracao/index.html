@@ -3,417 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restauração Digital 8K | O Último Humano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <title>Restauração 8K AI | O Último Humano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #050505;
-            --bg-secondary: #0a0a0a;
-            --primary: #8a2be2; /* Roxo Neon */
-            --primary-glow: rgba(138, 43, 226, 0.5);
-            --action: #00E676; /* Verde Alta Conversão */
-            --action-glow: rgba(0, 230, 118, 0.4);
-            --text-light: #ffffff;
+            --bg-base: #0a0a0a;
+            --bg-card: #141414;
+            --primary: #8a2be2; /* Neon Purple */
+            --primary-glow: 0 0 15px rgba(138, 43, 226, 0.7);
+            --text-main: #ffffff;
             --text-muted: #a0a0a0;
+            --success: #00E676;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
+        /* Header */
+        header { padding: 20px 0; border-bottom: 1px solid #222; text-align: center; }
+        .logo { font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .logo span { color: var(--primary); text-shadow: var(--primary-glow); }
 
-        /* --- UTILITÁRIOS --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* Hero */
+        .hero { padding: 80px 0; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1;}
+        .hero h1 span { color: var(--primary); text-shadow: var(--primary-glow); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px auto; }
 
-        .text-highlight {
-            color: var(--primary);
-        }
-
-        /* --- BOTÃO NEON PULSANTE --- */
-        .btn-neon {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            background: linear-gradient(90deg, #00C853 0%, #00E676 100%);
-            color: #000;
-            text-align: center;
-            padding: 20px 30px;
-            font-size: 1.2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 0 0 20px var(--action-glow);
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-            border: 2px solid #b9f6ca;
-        }
-
-        .btn-neon:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--action-glow);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(0, 230, 118, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: radial-gradient(circle at 50% -20%, #2a0845 0%, var(--bg-base) 70%);
-            padding: 80px 0 60px 0;
-            text-align: center;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
-        }
-
-        .headline-top {
-            display: inline-block;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            background: rgba(138, 43, 226, 0.05);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero p.subheadline {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 40px auto;
-            font-weight: 400;
-        }
-
-        /* --- VSL PLACEHOLDER --- */
-        .vsl-box {
-            width: 100%;
-            max-width: 800px;
-            aspect-ratio: 16/9;
-            background-color: #000;
-            margin: 0 auto 40px auto;
-            border-radius: 12px;
-            border: 2px solid #222;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Pricing Section */
+        .pricing { padding: 60px 0; background: radial-gradient(circle at center, #1a0b2e 0%, #0a0a0a 70%);}
+        .pricing-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 40px;}
+        
+        .price-card { 
+            background: var(--bg-card); 
+            border: 1px solid #222; 
+            border-radius: 16px; 
+            padding: 40px; 
+            width: 100%; 
+            max-width: 380px; 
+            transition: all 0.3s ease; 
             position: relative;
-            overflow: hidden;
-        }
-
-        .vsl-box::before {
-            content: "▶";
-            font-size: 4rem;
-            color: rgba(255,255,255,0.8);
-            text-shadow: 0 0 20px var(--primary);
-            cursor: pointer;
-            transition: transform 0.2s;
+            display: flex; flex-direction: column;
         }
         
-        .vsl-box:hover::before {
-            transform: scale(1.1);
+        .price-card:hover { border-color: var(--primary); box-shadow: var(--primary-glow); transform: translateY(-5px); }
+
+        .card-image { 
+            width: 100%; 
+            height: 200px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            overflow: hidden; 
+            border: 1px solid #333;
+            display: flex; align-items: center; justify-content: center; color: #444; font-weight: 600;
+        }
+        
+        /* Placeholder for User Images - Replace 'src' with actual uploaded image URLs */
+        .card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .badge { 
+            position: absolute; top: -15px; right: 20px; 
+            background: var(--primary); color: #fff; 
+            padding: 5px 15px; border-radius: 20px; 
+            font-weight: 700; font-size: 0.8rem; text-transform: uppercase; 
+            box-shadow: var(--primary-glow);
         }
 
-        .security-badges {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
+        .price-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase;}
+        .price-card .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; height: 50px;}
+        
+        .price-value { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: baseline; gap: 5px;}
+        .price-value span { font-size: 1rem; color: var(--text-muted); font-weight: 400;}
 
-        /* --- SEÇÃO DE BENEFÍCIOS (GLASSMORPHISM) --- */
-        .benefits {
-            padding: 80px 0;
-            background-color: var(--bg-secondary);
-            position: relative;
-        }
+        .features { list-style: none; margin-bottom: 40px; flex-grow: 1;}
+        .features li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;}
+        .features li::before { content: '✓'; color: var(--success); font-weight: 700; }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 50px;
+        .btn { 
+            display: block; width: 100%; padding: 15px; 
+            background: transparent; border: 2px solid var(--primary); 
+            color: var(--primary); text-align: center; text-decoration: none; 
+            border-radius: 8px; font-weight: 700; text-transform: uppercase; 
+            transition: all 0.3s ease; 
         }
+        .btn:hover { background: var(--primary); color: #fff; box-shadow: var(--primary-glow); }
 
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .price-card.featured { border-color: var(--primary); box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); }
+        .price-card.featured .btn { background: var(--primary); color: #fff; }
+        .price-card.featured .btn:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.8); }
 
-        .glass-card {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 35px 25px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
+        /* How it Works Section */
+        .process { padding: 80px 0; background: #080808; border-top: 1px solid #111;}
+        .process h2 { text-align: center; font-size: 2.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
+        .process h2 span { color: var(--primary); }
+        
+        .process-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+        .process-item { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; padding: 30px; width: 100%; max-width: 320px; text-align: center;}
+        .process-icon { font-size: 2rem; color: var(--primary); text-shadow: var(--primary-glow); margin-bottom: 20px; font-weight: 800;}
+        .process-item h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;}
+        .process-item p { color: var(--text-muted); font-size: 0.9rem; }
 
-        .glass-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
-        }
+        /* Footer */
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid #222; color: #444; font-size: 0.8rem;}
 
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .glass-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .glass-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* --- COMO FUNCIONA (PASSO A PASSO) --- */
-        .steps {
-            padding: 80px 0;
-            background: var(--bg-base);
-        }
-
-        .step-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 20px 30px;
-            margin-bottom: 20px;
-        }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary);
-            opacity: 0.3;
-            width: 60px;
-        }
-
-        .step-text {
-            flex-grow: 1;
-            padding: 0 20px;
-        }
-
-        .step-text h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .step-text p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- OFERTA / CALL TO ACTION FINAL --- */
-        .offer-section {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(180deg, var(--bg-secondary) 0%, #150624 100%);
-            border-top: 1px solid #222;
-        }
-
-        .price-box {
-            margin: 30px 0;
-        }
-
-        .price-box span.de {
-            text-decoration: line-through;
-            color: #ff4444;
-            font-size: 1.2rem;
-        }
-
-        .price-box span.por {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #fff;
-            display: block;
-            text-shadow: 0 0 20px rgba(255,255,255,0.2);
-        }
-
-        /* --- BOTÃO FLUTUANTE WHATSAPP --- */
-        .float-wpp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            animation: pulse-wpp 2s infinite;
-        }
-
-        @keyframes pulse-wpp {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* --- RESPONSIVO --- */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
-            .section-title { font-size: 1.8rem; }
-            .step-row { flex-direction: column; text-align: center; }
-            .step-number { margin-bottom: 10px; }
-            .float-wpp { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 24px; }
+            .pricing-grid { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
+    <header>
+        <div class="container">
+            <div class="logo">O ÚLTIMO <span>HUMANO</span></div>
+        </div>
+    </header>
+
     <section class="hero">
         <div class="container">
-            <span class="headline-top">O TOQUE HUMANO + INTELIGÊNCIA ARTIFICIAL</span>
-            <h1>O Tempo Apaga Suas Fotos, Mas Não Suas <span class="text-highlight">Memórias.</span></h1>
-            <p class="subheadline">Transforme fotografias velhas, rasgadas e desgastadas em verdadeiras obras de arte em resolução 8K Ultra HD. Assista ao vídeo e veja a mágica acontecer.</p>
-            
-            <!-- VSL PLACEHOLDER (Espaço para o seu vídeo de vendas) -->
-            <div class="vsl-box"></div>
-
-            <a href="LINK_DO_SEU_CHECKOUT_AQUI" class="btn-neon">Restaurar Minhas Fotos Agora</a>
-            
-            <div class="security-badges">
-                <span>🔒 Compra 100% Segura</span>
-                <span>✅ Satisfação Garantida</span>
-                <span>⚡ Envio Imediato via WhatsApp</span>
-            </div>
+            <h1>Restauração e Colorização <span>8K AI</span></h1>
+            <p>Transformamos memórias foscas e danificadas em obras de arte digitais com resolução cinematográfica. Tecnologia de ponta, toque humano.</p>
         </div>
     </section>
 
-    <!-- BENEFÍCIOS / A VITRINE -->
-    <section class="benefits">
+    <section class="pricing">
         <div class="container">
-            <h2 class="section-title">Tecnologia de <span class="text-highlight">Alto Nível</span> Aplicada à Sua História</h2>
-            
-            <div class="grid-cards">
-                <div class="glass-card">
-                    <div class="card-icon">🔍</div>
-                    <h3>Upscaling 8K Ultra HD</h3>
-                    <p>Elevamos a resolução ao extremo sem alterar as feições. Refazemos cada detalhe para extrema alta definição.</p>
+            <div class="pricing-grid">
+                
+                <!-- Pacote Básico -->
+                <div class="price-card">
+                    <div class="card-image">
+                        <!-- Instuções: Upload 'image_20.png' to GitHub and put URL here -->
+                        <img src="" alt="Conceito Antes/Depois Básico">
+                        <span>[Upload image_20.png]</span>
+                    </div>
+                    <h3>Básico</h3>
+                    <p class="desc">Ideal para testar a mítica restauração AI em uma memória especial.</p>
+                    <div class="price-value">R$ 27,90 <span>/ pagamento único</span></div>
+                    <ul class="features">
+                        <li>1 Fotografia Restaurada</li>
+                        <li>Upscaling para Resolução 8K</li>
+                        <li>Colorização Inteligente (se P&B)</li>
+                        <li>Remoção de Riscos e Manchas</li>
+                        <li>Entrega via WhatsApp</li>
+                    </ul>
+                    <!-- Link Stripe Básico -->
+                    <a href="https://buy.stripe.com/cNi00b9ptd085ZZ03D0RG00" class="btn">Restaurar Minha Foto</a>
                 </div>
 
-                <div class="glass-card">
-                    <div class="card-icon">🩹</div>
-                    <h3>Reconstrução de Danos</h3>
-                    <p>Remoção cirúrgica de rasgos profundos, manchas de umidade e dobras. Preenchimento invisível e orgânico.</p>
+                <!-- Pacote Premium -->
+                <div class="price-card featured">
+                    <div class="badge">Melhor Valor</div>
+                    <div class="card-image">
+                        <!-- Instuções: Upload 'image_29.png' to GitHub and put URL here -->
+                        <img src="" alt="Conceito Antes/Depois Premium Grid">
+                        <span>[Upload image_29.png]</span>
+                    </div>
+                    <h3>Premium</h3>
+                    <p class="desc">Restauração completa para preservar todo o seu álbum de família.</p>
+                    <div class="price-value">R$ 97,90 <span>/ pagamento único</span></div>
+                    <ul class="features">
+                        <li>10 Fotografias Restauradas</li>
+                        <li>Apenas R$ 9,79 por foto</li>
+                        <li>Upscaling 8K em todas as imagens</li>
+                        <li>Colorização Premium</li>
+                        <li>Correção de Cor e Luz Avançada</li>
+                        <li>Suporte VIP via WhatsApp</li>
+                    </ul>
+                    <!-- Link Stripe Premium - FORNECIDO PELO USUÁRIO -->
+                    <a href="https://buy.stripe.com/6oU00b6dh4tC3RR6s10RG01" class="btn">Garantir Meu Pacote</a>
                 </div>
 
-                <div class="glass-card">
-                    <div class="card-icon">🎨</div>
-                    <h3>Colorização Histórica</h3>
-                    <p>Fim das fotos amareladas. Trazemos o realismo das cores originais da época, sem aspecto de pintura artificial.</p>
-                </div>
-
-                <div class="glass-card">
-                    <div class="card-icon">🧵</div>
-                    <h3>Textura & Grão Orgânico</h3>
-                    <p>Zero "efeito de plástico". Preservamos a textura da pele e a trama das roupas mantendo a identidade original.</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- COMO FUNCIONA -->
-    <section class="steps">
+    <section class="process">
         <div class="container">
-            <h2 class="section-title">Como Funciona?</h2>
-            
-            <div class="step-row">
-                <div class="step-number">01</div>
-                <div class="step-text">
-                    <h4>Garanta seu pacote de restauração</h4>
-                    <p>Finalize o pagamento com segurança. Você garante a vaga na nossa esteira de produção imediata.</p>
+            <h2>Como Funciona a <span>Mágica</span></h2>
+            <div class="process-grid">
+                
+                <div class="process-item">
+                    <div class="process-icon">01</div>
+                    <h4>Escolha seu Pacote</h4>
+                    <p>Selecione a melhor oferta acima. O pagamento é 100% seguro e processado pela Stripe.</p>
                 </div>
-            </div>
 
-            <div class="step-row">
-                <div class="step-number">02</div>
-                <div class="step-text">
-                    <h4>Envio Direto no WhatsApp</h4>
-                    <p>Você será redirecionado para o nosso número exclusivo para enviar a foto danificada (basta tirar uma foto pelo celular).</p>
+                <div class="process-item">
+                    <div class="process-icon">02</div>
+                    <h4>Conexão WhatsApp</h4>
+                    <p>Após o pagamento, você é redirecionado automaticamente ao nosso WhatsApp VIP (+55 34 99871-8340).</p>
                 </div>
-            </div>
 
-            <div class="step-row">
-                <div class="step-number">03</div>
-                <div class="step-text">
-                    <h4>Sua obra de arte entregue</h4>
-                    <p>Devolvemos a imagem restaurada em 8K, perfeitamente nítida, pronta para guardar, presentear ou imprimir.</p>
+                <div class="process-item">
+                    <div class="process-icon">03</div>
+                    <h4>Envio e Restauração</h4>
+                    <p>Envie suas fotos digitais (ou scans). Nossa AI e especialistas iniciam a restauração 8K imediatamente.</p>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- OFERTA FINAL -->
-    <section class="offer-section">
+    <footer>
         <div class="container">
-            <h2>Pronto para resgatar o seu passado?</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">Não deixe que o mofo e o tempo destruam a única lembrança física que sobrou.</p>
-            
-            <div class="price-box">
-                <span class="de">Pacote Normal: R$ 97,00</span>
-                <span class="por">R$ 47,90</span>
-                <p style="color: #00E676; font-weight: bold; margin-top: 5px;">Oferta válida apenas para hoje!</p>
-            </div>
-
-            <a href="LINK_DO_SEU_CHECKOUT_AQUI" class="btn-neon">Quero Salvar Minhas Fotos</a>
+            <p>&copy; 2023 O Último Humano. Uberlândia/MG.</p>
+            <p>Atendimento humano via WhatsApp.</p>
         </div>
-    </section>
-
-    <!-- BOTÃO FLUTUANTE WHATSAPP -->
-    <!-- Substitua "SEU_NUMERO" pelo número do WhatsApp com DDI e DDD (ex: 5511999999999) -->
-    <a href="https://wa.me/SEU_NUMERO?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20restauração%208K." class="float-wpp" target="_blank">
-        <svg viewBox="0 0 32 32" width="35" height="35" fill="white" style="margin-top: 5px;">
-            <path d="M16.002 0c-8.835 0-16 7.163-16 16 0 2.802 0.725 5.534 2.106 7.965l-2.108 7.697 7.876-2.066c2.378 1.258 5.048 1.921 7.788 1.921h0.006c8.832 0 16-7.163 16-16-0.002-8.835-7.169-15.517-15.662-15.517zM16.002 28.847h-0.004c-2.364 0-4.686-0.635-6.721-1.841l-0.482-0.286-4.996 1.31 1.332-4.871-0.314-0.499c-1.325-2.108-2.023-4.542-2.023-7.054 0-7.362 5.992-13.352 13.359-13.352 3.568 0.002 6.92 1.393 9.442 3.916 2.52 2.523 3.909 5.877 3.907 9.445-0.004 7.364-5.996 13.352-13.357 13.352zM23.332 18.841c-0.402-0.201-2.378-1.173-2.746-1.308-0.368-0.134-0.635-0.201-0.902 0.201s-1.037 1.308-1.271 1.575c-0.235 0.268-0.47 0.301-0.871 0.1s-1.698-0.626-3.234-1.996c-1.195-1.066-2.003-2.383-2.238-2.784s-0.025-0.619 0.176-0.819c0.181-0.18 0.402-0.469 0.603-0.704 0.201-0.235 0.268-0.402 0.402-0.67s0.067-0.503-0.034-0.704c-0.1-0.201-0.902-2.176-1.236-2.98-0.325-0.785-0.655-0.678-0.902-0.69s-0.536-0.013-0.804-0.013c-0.268 0-0.704 0.1-1.072 0.503s-1.407 1.373-1.407 3.348 1.44 3.882 1.641 4.15c0.201 0.268 2.827 4.316 6.848 6.052 0.957 0.414 1.704 0.662 2.287 0.847 0.962 0.306 1.838 0.263 2.529 0.159 0.776-0.117 2.378-0.971 2.713-1.91 0.335-0.938 0.335-1.741 0.235-1.91-0.103-0.168-0.37-0.268-0.771-0.469z"></path>
-        </svg>
-    </a>
+    </footer>
 
 </body>
 </html>
