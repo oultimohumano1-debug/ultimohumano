@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Páginas de Vendas para Estética</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0F0813;
+    --bg-panel: #1A0F24;
+    --bg-problem: #1A0F14;
+    --purple-main: #7C3AED;
+    --purple-light: #8B2FE8;
+    --magenta-alert: #EF4444;
+    --white: #FFFFFF;
+    --gray-text: #C9C3D0;
+    --border-line: rgba(124, 58, 237, 0.28);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg-dark);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.1;
+  }
+
+  .accent {
+    color: var(--purple-main);
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    font-weight: 700;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* --- Botões / CTAs --- */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 36px;
+    background: var(--purple-main);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 999px;
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .cta-btn:hover {
+    background: var(--purple-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.6);
+  }
+
+  /* --- 1. HERO (Com Vídeo) --- */
+  .hero {
+    position: relative;
+    padding: 120px 0 80px;
+    text-align: center;
+    overflow: hidden;
+    background: var(--bg-dark);
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.35; 
+    mix-blend-mode: screen;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 150px;
+    background: linear-gradient(to top, var(--bg-dark), transparent);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2; 
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid var(--purple-main);
+    border-radius: 999px;
+    background: rgba(124, 58, 237, 0.05);
+    color: var(--purple-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--gray-text);
+    max-width: 650px;
+    margin: 0 auto 40px;
+  }
+
+  .social-proof {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--gray-text);
+  }
+
+  .avatars { display: flex; }
+  .avatars span {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--purple-main);
+    margin-left: -10px;
+    background: var(--bg-panel);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: bold;
+  }
+  .avatars span:first-child { margin-left: 0; }
+
+  /* --- 2. PROBLEMA -> SOLUÇÃO --- */
+  .pas-section { padding: 80px 0; background: var(--bg-problem); }
+  .section-title { text-align: center; font-size: 36px; margin-bottom: 48px; }
+  
+  .alert-icon {
+    display: inline-block;
+    color: var(--magenta-alert);
+    animation: pulse 2s infinite;
+    margin-right: 12px;
+    text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+  }
+  @keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+  
+  .card-problem {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, var(--bg-panel) 100%);
+    padding: 32px;
+    border-radius: 12px;
+    border-left: 4px solid var(--magenta-alert);
+    font-style: italic;
+    color: var(--gray-text);
+    box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.02);
+  }
+
+  .card-solution, .step-card {
+    background: var(--bg-dark);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border-line);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-solution:hover, .step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(124, 58, 237, 0.2);
+    border-color: var(--purple-light);
+  }
+  
+  .card-solution::before, .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+    transition: left 0.6s ease;
+  }
+  .card-solution:hover::before, .step-card:hover::before {
+    left: 100%;
+  }
+
+  .card-solution .icon {
+    font-size: 32px;
+    color: var(--purple-main);
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+  }
+  .card-solution:hover .icon {
+    transform: scale(1.1);
+  }
+
+  /* --- 3. PORTFÓLIO (VÍDEO LOCAL) --- */
+  .portfolio { padding: 80px 0; text-align: center; background: var(--bg-dark); }
+  .niches { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .niche-badge {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--gray-text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-line);
+  }
+  
+  .carousel-video-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-line);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(124, 58, 237, 0.15);
+    background: var(--bg-panel);
+  }
+  .carousel-video-container video {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* --- 4. QUEM FAZ --- */
+  .authority { padding: 80px 0; background: var(--bg-panel); }
+  .auth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .auth-photo-container {
+    width: 100%; 
+    height: 500px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-line);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .auth-photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .auth-list { list-style: none; margin-top: 24px; }
+  .auth-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px; color: var(--gray-text);
+  }
+  .auth-list li::before {
+    content: "✦"; color: var(--purple-main); font-weight: bold; margin-top: 2px;
+  }
+  .auth-list strong { color: var(--white); }
+
+  /* --- 5. COMO FUNCIONA --- */
+  .steps { padding: 80px 0; background: var(--bg-dark); }
+  .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .step-card {
+    background: var(--bg-panel);
+    padding: 40px 32px;
+    text-align: left;
+  }
+  .step-number {
+    width: 48px; height: 48px;
+    background: var(--purple-main);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 700;
+    margin-bottom: 24px;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: transform 0.3s ease;
+  }
+  .step-card:hover .step-number {
+    transform: scale(1.1) rotate(-5deg);
+    background: var(--purple-light);
+  }
+
+  /* --- 6. FORMULÁRIO --- */
+  .form-section { padding: 80px 0; background: var(--bg-dark); }
+  .form-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--bg-panel);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-line);
+  }
+  .form-left {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--purple-main) 150%);
+    padding: 64px 48px;
+  }
+  .form-right { padding: 64px 48px; }
+  .input-group { margin-bottom: 24px; }
+  .input-group label { display: block; margin-bottom: 8px; color: var(--gray-text); font-size: 14px; }
+  .input-group input, .input-group select {
+    width: 100%; padding: 16px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-line);
+    border-radius: 8px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .input-group input:focus, .input-group select:focus { 
+    border-color: var(--purple-light); 
+  }
+
+  /* --- 7. FAQ --- */
+  .faq { padding: 80px 0; background: var(--bg-panel); }
+  details {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-line);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  details:hover { border-color: var(--purple-light); }
+  summary {
+    padding: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+'; color: var(--purple-main); font-size: 24px; font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+  details[open] summary::after { content: '-'; transform: rotate(90deg); }
+  .faq-content { padding: 0 24px 24px; color: var(--gray-text); line-height: 1.7; }
+
+  /* --- 8. CTA FINAL + RODAPÉ --- */
+  .final-cta {
+    padding: 100px 0; text-align: center;
+    background: radial-gradient(circle at 50% 100%, rgba(124,58,237,0.1) 0%, var(--bg-dark) 70%);
+  }
+  footer {
+    text-align: center; padding: 40px 0; border-top: 1px solid var(--border-line);
+    color: var(--gray-text); font-size: 14px;
+    background: var(--bg-dark);
+  }
+
+  /* --- STICKY BAR --- */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: var(--purple-main);
+    padding: 16px;
+    text-align: center;
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center; gap: 24px;
+  }
+  .sticky-bar p { font-weight: 600; margin: 0; color: var(--white); }
+  .sticky-btn {
+    background: var(--white); color: var(--purple-main);
+    padding: 10px 24px; border-radius: 999px; text-decoration: none; font-weight: 700;
+    transition: transform 0.2s ease;
+  }
+  .sticky-btn:hover { transform: scale(1.05); }
+
+  @media (max-width: 768px) {
+    .auth-grid, .step-grid, .form-wrapper { grid-template-columns: 1fr; }
+    .hero { padding: 80px 0 60px; }
+    .sticky-bar { flex-direction: column; gap: 12px; padding: 12px; }
+    .form-left, .form-right { padding: 40px 24px; }
+    .auth-photo-container { height: 400px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 1. HERO COM VÍDEO -->
+  <section class="hero">
+    
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="hero-bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="container hero-content">
+      <div class="badge">Páginas de Vendas &middot; Criação de Sites &middot; SEO &middot; Tráfego Pago</div>
+      
+      <h1>Sua agenda lotada não depende de likes. Depende de uma <span class="accent">Página que Converte.</span></h1>
+      <p class="subtitle">Transforme os cliques do seu Instagram em agendamentos reais no WhatsApp. Sua página de vendas de alto padrão no ar em <span class="accent">3 dias</span>, a partir de <span class="accent">R$497</span>.</p>
+      
+      <a href="#form" class="cta-btn">Quero meu diagnóstico grátis</a>
+      
+      <div class="social-proof">
+        <div class="avatars">
+          <span>+</span><span>D</span><span>C</span><span>M</span>
+        </div>
+        <p>Pacientes chegando todos os dias direto no WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEMA -> SOLUÇÃO -->
+  <section class="pas-section">
+    <div class="container">
+      <h2 class="section-title"><span class="alert-icon">⚠️</span>O que trava o crescimento da sua clínica hoje?</h2>
+      <div class="cards-grid">
+        <div class="card-problem">"Tenho muitos seguidores no Instagram, mas a agenda vive com buracos e os horários nobres ficam vazios, perdendo dinheiro."</div>
+        <div class="card-problem">"As pessoas mandam 'qual o valor?' no direct, acham caro e simplesmente somem sem me dar a chance de explicar o protocolo."</div>
+        <div class="card-problem">"Faço tráfego pago, mas o lead chega totalmente desqualificado, querendo apenas pechinchar o procedimento mais barato."</div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 40px;">O que uma <span class="accent">Página de Alta Conversão</span> faz por você:</h2>
+      <div class="cards-grid">
+        <div class="card-solution">
+          <div class="icon">✔</div>
+          <h3>Filtra Curiosos</h3>
+          <p style="color: var(--gray-text); margin-top: 8px;">O paciente chega no seu WhatsApp já entendendo o valor do seu protocolo, pronto para agendar.</p>
+        </div>
+        <div class="card-solution">
+          <div class="icon">✔</div>
+          <h3>Eleva sua Autoridade</h3>
+          <p style="color: var(--gray-text); margin-top: 8px;">Design premium que reflete a qualidade do seu espaço. Você para de brigar por preço.</p>
+        </div>
+        <div class="card-solution">
+          <div class="icon">✔</div>
+          <h3>Vende 24h por dia</h3>
+          <p style="color: var(--gray-text); margin-top: 8px;">Uma vitrine persuasiva rodando no automático, captando pacientes enquanto você atende.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PORTFÓLIO -->
+  <section class="portfolio">
+    <div class="container">
+      <div class="niches">
+        <span class="niche-badge">Harmonização Facial</span>
+        <span class="niche-badge">Estética Corporal</span>
+        <span class="niche-badge">Laser e Depilação</span>
+        <span class="niche-badge">Clínicas Premium</span>
+      </div>
+      <h2 class="section-title">Design focado em <span class="accent">Converter Pacientes</span></h2>
+      
+      <!-- Container do vídeo local -->
+      <div class="carousel-video-container">
+        <video autoplay muted loop playsinline>
+          <source src="v001.mp4" type="video/mp4">
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+      </div>
+      
+      <a href="#form" class="cta-btn">Ver quanto custa a minha página</a>
+    </div>
+  </section>
+
+  <!-- 4. QUEM FAZ -->
+  <section class="authority">
+    <div class="container auth-grid">
+      <div class="auth-photo-container">
+        <img src="perfil.png" alt="Marcio - Especialista Digital">
+      </div>
+      <div>
+        <h2 style="font-size: 32px; margin-bottom: 24px;">Eu não crio apenas "sites bonitos". Eu construo um <span class="accent">ecossistema digital completo</span> que vende.</h2>
+        <p style="color: var(--gray-text);">Muito prazer, sou o Marcio. Trabalho integrando design de alta performance, copy persuasiva e inteligência de mercado para alavancar negócios.</p>
+        <p style="color: var(--gray-text); margin-top: 16px;">Meu foco é transformar a sua presença digital em uma máquina de previsibilidade e lucro, oferecendo soluções de ponta a ponta:</p>
+        
+        <ul class="auth-list">
+          <li><strong>Páginas de Vendas:</strong> Estruturas de altíssima conversão desenhadas para quebrar objeções e vender.</li>
+          <li><strong>Criação de Sites:</strong> Plataformas completas e profissionais que transmitem autoridade imediata.</li>
+          <li><strong>SEO:</strong> Otimização técnica avançada para você ser encontrado organicamente no Google.</li>
+          <li><strong>Tráfego Pago:</strong> Gestão de campanhas direcionadas para encher seu WhatsApp de leads qualificados.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. COMO FUNCIONA -->
+  <section class="steps">
+    <div class="container">
+      <h2 class="section-title">Do zero ao ar em <span class="accent">3 passos simples</span></h2>
+      <div class="step-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 style="margin-bottom: 8px;">Diagnóstico e Estratégia</h3>
+          <p style="color: var(--gray-text);">Entendo os seus melhores protocolos, seu público-alvo e definimos a oferta irresistível. <span style="color: var(--purple-light); display:block; margin-top:8px; font-size: 14px;">(Dia 1)</span></p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 style="margin-bottom: 8px;">Design e Estruturação</h3>
+          <p style="color: var(--gray-text);">Crio o layout premium, os textos e configuro as engrenagens de conversão. Você aprova tudo. <span style="color: var(--purple-light); display:block; margin-top:8px; font-size: 14px;">(Dia 2)</span></p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 style="margin-bottom: 8px;">Lançamento e Tráfego</h3>
+          <p style="color: var(--gray-text);">Sua estrutura vai ao ar, otimizada e pronta para captar tráfego e gerar agendamentos. <span style="color: var(--purple-light); display:block; margin-top:8px; font-size: 14px;">(Dia 3)</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FORMULÁRIO -->
+  <section id="form" class="form-section">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="form-left">
+          <h2 style="font-size: 32px; margin-bottom: 24px;">Preencha para receber uma proposta exata para a sua clínica.</h2>
+          <ul class="auth-list" style="color: var(--white);">
+            <li style="color: var(--white);">Sem taxas ocultas.</li>
+            <li style="color: var(--white);">Entrega rápida (3 a 5 dias úteis).</li>
+            <li style="color: var(--white);">Ecossistema digital completo.</li>
+          </ul>
+        </div>
+        <div class="form-right">
+          <form onsubmit="sendToWhatsApp(event)">
+            <div class="input-group">
+              <label>Seu Nome</label>
+              <input type="text" id="clientName" placeholder="Ex: Dra. Ana Silva" required>
+            </div>
+            <div class="input-group">
+              <label>WhatsApp</label>
+              <input type="tel" id="clientPhone" placeholder="(00) 00000-0000" required>
+            </div>
+            <div class="input-group">
+              <label>Serviço de maior interesse</label>
+              <select id="clientService" required>
+                <option value="">Selecione...</option>
+                <option value="landing-page">Página de Vendas</option>
+                <option value="site">Criação de Site Completo</option>
+                <option value="trafego">Tráfego Pago / SEO</option>
+                <option value="combo">Projeto Completo (Site + Tráfego)</option>
+              </select>
+            </div>
+            <button type="submit" class="cta-btn" style="width: 100%; margin-top: 16px;">Solicitar Orçamento</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ -->
+  <section class="faq">
+    <div class="container" style="max-width: 800px;">
+      <h2 class="section-title">Perguntas Frequentes</h2>
+      
+      <details open>
+        <summary>Qual o valor de uma Página de Vendas?</summary>
+        <div class="faq-content">Projetos de alta conversão a partir de R$497, pagos em até 12x. O valor exato depende do número de dobras (seções), integrações necessárias e da complexidade da sua esteira de procedimentos.</div>
+      </details>
+      <details>
+        <summary>Preciso pagar mensalidade?</summary>
+        <div class="faq-content">Não. A página é 100% sua, livre de mensalidades atreladas ao desenvolvimento. Você só pagará (direto para as plataformas) os custos anuais de domínio e hospedagem. <strong>E o melhor: o primeiro ano do seu domínio (seu-nome.com.br) é por nossa conta!</strong></div>
+      </details>
+      <details>
+        <summary>E se eu precisar atualizar o meu site?</summary>
+        <div class="faq-content">Oferecemos total suporte pós-entrega. Para pequenas alterações de texto ou troca de imagens, você recebe orientações claras de como proceder de forma autônoma. Caso precise de atualizações estruturais maiores, criação de novas páginas ou gestão contínua, oferecemos pacotes de manutenção com valores acessíveis e exclusivos para quem já é nosso cliente.</div>
+      </details>
+      <details>
+        <summary>Vocês fazem a gestão do tráfego pago também?</summary>
+        <div class="faq-content">Sim! Além de construir a ferramenta de conversão (a Página ou o Site), possuímos expertise avançada em gestão de Tráfego Pago e SEO. Podemos estruturar o ecossistema completo: desde atrair o público certo até convertê-lo na página.</div>
+      </details>
+      <details>
+        <summary>E se eu não tiver logotipo ou fotos profissionais?</summary>
+        <div class="faq-content">Trabalhamos com bancos de imagens premium que passam total credibilidade, e ajustamos a tipografia para o seu nome passar a autoridade de uma marca, mesmo sem um logo complexo.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 8. CTA FINAL + RODAPÉ -->
+  <section class="final-cta">
+    <div class="container">
+      <div style="font-size: 64px; margin-bottom: 24px; color: var(--purple-main);">✦</div>
+      <h2 style="font-size: 40px; margin-bottom: 32px;">A estrutura que <span class="accent">finalmente lota</span> a sua agenda.</h2>
+      <a href="#form" class="cta-btn">Quero começar meu projeto</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Marcio • Especialista em Estruturas de Alta Conversão e Tráfego.</p>
+    </div>
+  </footer>
+
+  <!-- STICKY BAR BOTTOM -->
+  <div class="sticky-bar">
+    <p>Página de Vendas no ar em 3 dias a partir de R$497.</p>
+    <a href="#form" class="sticky-btn">Falar no WhatsApp</a>
+  </div>
+
+  <!-- Script para integração com o WhatsApp -->
+  <script>
+    function sendToWhatsApp(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('clientName').value;
+      const select = document.getElementById('clientService');
+      const service = select.options[select.selectedIndex].text;
+      
+      const myPhoneNumber = "5534998718340"; 
+      
+      const message = `Olá! Meu nome é ${name} e gostaria de solicitar um orçamento para a minha clínica.\n\nTenho maior interesse no serviço de: *${service}*.\n\nPodemos conversar?`;
+      
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${myPhoneNumber}&text=${encodeURIComponent(message)}`;
+      
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+
+</body>
+</html>
