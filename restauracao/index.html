@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restauração 8K AI | O Último Humano</title>
+    <title>Restauração 8K AI | Memórias Vivas</title>
     
-    <!-- Fontes do Google: Montserrat para textos base e Playfair Display para o título gigante estilo Editorial -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
@@ -26,221 +25,93 @@
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%;}
 
-        /* Header Minimalista Transparente */
+        /* Header com CTA Emocional */
         header { padding: 25px 0; position: absolute; width: 100%; top: 0; z-index: 100; background: transparent;}
-        .logo { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 3px; }
-        .logo span { color: var(--primary); text-shadow: var(--primary-glow); }
-
-        /* ========= HERO EDITORIAL (FUNDO DE VÍDEO) ========= */
-        .hero { 
-            position: relative; 
-            min-height: 100vh; /* Ocupa 100% da altura da tela */
-            display: flex; 
-            align-items: center; 
-            overflow: hidden;
-        }
-
-        /* O Vídeo fica absoluto no fundo */
-        .hero-video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-
-        /* Gradiente escuro para garantir que o texto seja legível em cima do vídeo */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.1) 100%);
-            z-index: 1;
-        }
-
-        /* O conteúdo flutua acima do vídeo e do overlay */
-        .hero .container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-text { max-width: 650px; padding-top: 80px;}
-        
-        /* Subtítulo estilo revista */
-        .hero-subheading {
-            font-family: 'Montserrat', sans-serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        /* Título Gigante Serifado */
-        .hero-text h1 { 
+        .header-cta { 
+            font-weight: 600; 
+            font-size: 1.1rem; 
+            letter-spacing: 1px; 
+            color: #e0e0e0; 
             font-family: 'Playfair Display', serif;
-            font-size: 7.5rem; 
-            line-height: 0.85; 
-            margin-bottom: 30px; 
-            text-transform: uppercase; 
-            font-weight: 700;
-            letter-spacing: -2px;
+            font-style: italic;
         }
+        .header-cta span { color: var(--primary); font-weight: 700; }
+
+        /* Hero */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+        .hero-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.1) 100%); z-index: 1; }
+        .hero .container { position: relative; z-index: 2; }
+        .hero-text { max-width: 650px; padding-top: 80px;}
+        .hero-subheading { font-family: 'Montserrat', sans-serif; font-style: italic; font-size: 1.2rem; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 7.5rem; line-height: 0.85; margin-bottom: 30px; text-transform: uppercase; font-weight: 700; letter-spacing: -2px; }
         .hero-text h1 span { color: var(--primary); text-shadow: var(--primary-glow); display: block;}
-        
         .hero-text p { font-size: 1.2rem; color: #e0e0e0; margin-bottom: 40px; line-height: 1.6; max-width: 500px; font-weight: 400;}
-        
         .hero-cta { display: flex; gap: 20px; flex-wrap: wrap;}
-        
-        .btn-hero-primary { 
-            display: inline-block; padding: 18px 35px; 
-            background: var(--primary); border: none;
-            color: #fff; text-align: center; text-decoration: none; 
-            border-radius: 4px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
-            transition: all 0.3s ease; box-shadow: var(--primary-glow); letter-spacing: 1px;
-        }
+        .btn-hero-primary { display: inline-block; padding: 18px 35px; background: var(--primary); border: none; color: #fff; text-align: center; text-decoration: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: var(--primary-glow); letter-spacing: 1px; }
         .btn-hero-primary:hover { box-shadow: 0 0 30px rgba(138, 43, 226, 0.9); transform: translateY(-3px);}
-
-        .btn-hero-secondary { 
-            display: inline-block; padding: 18px 35px; 
-            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff; text-align: center; text-decoration: none; 
-            border-radius: 4px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem;
-            transition: all 0.3s ease; backdrop-filter: blur(5px); letter-spacing: 1px;
-        }
+        .btn-hero-secondary { display: inline-block; padding: 18px 35px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: #fff; text-align: center; text-decoration: none; border-radius: 4px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: all 0.3s ease; backdrop-filter: blur(5px); letter-spacing: 1px; }
         .btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.2); }
-        /* ======================================================= */
 
-        /* Benefícios */
+        /* Nova Seção de Benefícios/Processo com Imagens */
         .benefits { padding: 80px 0; background-color: var(--bg-base); }
         .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
-        .benefit-card { padding: 20px; }
-        .benefit-icon { font-size: 2.5rem; margin-bottom: 20px; }
-        .benefit-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
+        .benefit-card { padding: 20px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s ease; }
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        
+        .step-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border: 1px solid #333;
+        }
+
+        .benefit-card h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
         .benefit-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;}
 
-        /* Pricing Section */
+        /* Preços */
         .pricing { padding: 80px 0; background: radial-gradient(circle at top, #1a0b2e 0%, #0a0a0a 70%);}
         .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px;}
         .pricing-sub { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 50px auto; font-size: 1.1rem;}
-        
         .pricing-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-        
-        .price-card { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border); 
-            border-radius: 12px; 
-            padding: 40px; 
-            width: 100%; 
-            max-width: 400px; 
-            transition: all 0.3s ease; 
-            position: relative;
-            display: flex; flex-direction: column;
-        }
-        
+        .price-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 40px; width: 100%; max-width: 400px; transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
         .price-card:hover { border-color: var(--primary); box-shadow: var(--primary-glow); transform: translateY(-5px); }
-
-        .card-image { 
-            width: 100%; 
-            height: 300px; 
-            border-radius: 8px; 
-            margin-bottom: 25px; 
-            overflow: hidden; 
-            border: 1px solid #333;
-        }
+        .card-image { width: 100%; height: 300px; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         .card-image img { width: 100%; height: 100%; object-fit: cover; }
-
-        .badge { 
-            position: absolute; top: -15px; right: 20px; 
-            background: var(--primary); color: #fff; 
-            padding: 6px 18px; border-radius: 20px; 
-            font-weight: 700; font-size: 0.8rem; text-transform: uppercase; 
-            box-shadow: var(--primary-glow);
-        }
-
+        .badge { position: absolute; top: -15px; right: 20px; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; box-shadow: var(--primary-glow); }
         .price-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase;}
         .price-card .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; height: 50px;}
-        
         .price-value { font-size: 2.8rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: baseline; gap: 8px;}
         .price-value span { font-size: 1rem; color: var(--text-muted); font-weight: 400;}
-
         .features { list-style: none; margin-bottom: 40px; flex-grow: 1;}
         .features li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; display: flex; align-items: center; gap: 12px;}
         .features li::before { content: '✓'; color: var(--primary); font-weight: 900; font-size: 1.1rem;}
-
-        .btn-card { 
-            display: block; width: 100%; padding: 18px; 
-            background: transparent; border: 2px solid var(--primary); 
-            color: var(--primary); text-align: center; text-decoration: none; 
-            border-radius: 4px; font-weight: 700; text-transform: uppercase; 
-            transition: all 0.3s ease; letter-spacing: 1px;
-        }
+        .btn-card { display: block; width: 100%; padding: 18px; background: transparent; border: 2px solid var(--primary); color: var(--primary); text-align: center; text-decoration: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; transition: all 0.3s ease; letter-spacing: 1px; }
         .btn-card:hover { background: var(--primary); color: #fff; box-shadow: var(--primary-glow); }
-
         .price-card.featured { border-color: var(--primary); box-shadow: 0 0 20px rgba(138, 43, 226, 0.2); }
         .price-card.featured .btn-card { background: var(--primary); color: #fff; }
         .price-card.featured .btn-card:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.8); }
 
-        /* Processo */
-        .process { padding: 80px 0; background: #050505; border-top: 1px solid #111;}
-        .process h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 60px; }
-        
-        .process-grid { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
-        .process-item { background: var(--bg-card); border: 1px solid #222; border-radius: 8px; padding: 40px 30px; width: 100%; max-width: 340px; text-align: center;}
-        .process-icon { font-size: 2.5rem; margin-bottom: 20px;}
-        .process-item h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;}
-        .process-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;}
-
-        /* Floating Buttons */
-        .float-btn {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-            border: none;
-            cursor: pointer;
-        }
+        /* Floating Buttons com Logo Oficial do WhatsApp */
+        .float-btn { position: fixed; width: 60px; height: 60px; bottom: 30px; border-radius: 50px; display: flex; align-items: center; justify-content: center; z-index: 1000; transition: transform 0.3s ease; box-shadow: 0px 4px 15px rgba(0,0,0,0.3); border: none; cursor: pointer; }
         .float-btn:hover { transform: scale(1.1); }
+        .whatsapp-float { right: 30px; background-color: #25d366; box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4); }
         
-        .whatsapp-float {
-            right: 30px;
-            background-color: #25d366;
-            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
-        }
-        
-        .share-float {
-            left: 30px;
-            background-color: var(--primary);
-            box-shadow: var(--primary-glow);
-            color: #fff;
-        }
+        footer { padding: 50px 0; text-align: center; color: #555; font-size: 0.85rem;}
 
-        footer { padding: 50px 0; text-align: center; border-top: 1px solid #222; color: #555; font-size: 0.85rem;}
-
-        /* Mobile Responsive */
+        /* Mobile */
         @media (max-width: 900px) {
             .hero-text { padding-top: 40px; text-align: center; }
-            .hero-overlay { background: rgba(10,10,10,0.7); } /* Mais escuro no celular para leitura */
+            .header-cta { text-align: center; font-size: 1rem; }
+            .hero-overlay { background: rgba(10,10,10,0.7); }
             .hero-text h1 { font-size: 4.5rem; line-height: 0.9; margin-bottom: 20px;}
             .hero-text p { margin: 0 auto 30px auto; }
             .hero-cta { justify-content: center; }
             .benefits-grid { grid-template-columns: 1fr; gap: 20px;}
             .pricing-grid { flex-direction: column; align-items: center; }
-            .float-btn { bottom: 20px; width: 50px; height: 50px; }
-            .whatsapp-float { right: 20px; }
-            .share-float { left: 20px; }
+            .float-btn { bottom: 20px; width: 55px; height: 55px; right: 20px; }
         }
     </style>
 </head>
@@ -248,51 +119,54 @@
 
     <header>
         <div class="container">
-            <div class="logo">O ÚLTIMO <span>HUMANO</span></div>
+            <div class="header-cta">A arte de eternizar <span>quem amamos</span></div>
         </div>
     </header>
 
     <section class="hero">
         <video autoplay loop muted playsinline class="hero-video-bg">
-            <source src="video.mp4" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
+            <source src="../video.mp4" type="video/mp4">
         </video>
-        
         <div class="hero-overlay"></div>
-
         <div class="container">
-            <!-- AQUI ESTÁ A COPY NOVA (OPÇÃO 2) APLICADA -->
             <div class="hero-text">
-                <div class="hero-subheading">O Resgate da Sua História</div>
-                <h1>Memórias<br><span>Vivas</span></h1>
+                <div class="hero-subheading">Inteligência Artificial</div>
+                <h1>Restauração<br><span>8K</span></h1>
                 <p>Reviva suas memórias mais preciosas com definição cinematográfica e colorização inteligente. A tecnologia que o tempo não consegue apagar.</p>
                 <div class="hero-cta">
                     <a href="#pricing" class="btn-hero-primary">Restaurar Agora</a>
-                    <a href="#process" class="btn-hero-secondary">Ver Processo</a>
+                    <a href="#benefits" class="btn-hero-secondary">Ver Processo</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Benefícios -->
-    <section class="benefits">
+    <!-- NOVA SEÇÃO COM AS FOTOS MODELO 1, 2 E 3 -->
+    <section id="benefits" class="benefits">
         <div class="container">
             <div class="benefits-grid">
+                
                 <div class="benefit-card">
-                    <div class="benefit-icon">✨</div>
-                    <h4>Nitidez Extrema</h4>
-                    <p>Nossa IA reconstrói detalhes faciais perdidos e transforma texturas borradas em alta definição cristalina.</p>
+                    <!-- Certifique-se de que a modelo1.jpg foi enviada para a pasta restauracao no GitHub -->
+                    <img src="modelo1.jpg" alt="Upload de Fotos Antigas" class="step-image">
+                    <h4>Resgate suas Lembranças</h4>
+                    <p>Tire uma foto pelo celular ou nos envie os arquivos daquelas imagens antigas, rasgadas ou em preto e branco que contam a sua história.</p>
                 </div>
+                
                 <div class="benefit-card">
-                    <div class="benefit-icon">🎨</div>
-                    <h4>Colorização Realista</h4>
-                    <p>Diga adeus ao tom sépia. Injetamos cores vibrantes e naturais em fotografias antigas em preto e branco.</p>
+                    <!-- Certifique-se de que a modelo2.jpg foi enviada para a pasta restauracao no GitHub -->
+                    <img src="modelo2.jpg" alt="Processo de Restauração com IA" class="step-image">
+                    <h4>Inteligência em Ação</h4>
+                    <p>Nossa tecnologia atua milimetricamente para remover arranhões, reconstruir detalhes faciais e aplicar colorização realista sem perder a essência.</p>
                 </div>
+                
                 <div class="benefit-card">
-                    <div class="benefit-icon">🪄</div>
-                    <h4>Reparo de Danos</h4>
-                    <p>Arranhões, rasgos e manchas de tempo são apagados magicamente, devolvendo a foto ao seu estado original.</p>
+                    <!-- Certifique-se de que a modelo3.jpg foi enviada para a pasta restauracao no GitHub -->
+                    <img src="modelo3.jpg" alt="Foto Pronta para Imprimir" class="step-image">
+                    <h4>Pronta para Emocionar</h4>
+                    <p>Receba sua foto em altíssima resolução (8K). O resultado fica perfeito para revelar, emoldurar quadros e presentear a família.</p>
                 </div>
+
             </div>
         </div>
     </section>
@@ -302,12 +176,8 @@
             <h2>Escolha Seu Pacote Mágico</h2>
             <p class="pricing-sub">Sem aplicativos complicados. Você escolhe, nós fazemos o trabalho pesado.</p>
             <div class="pricing-grid">
-                
-                <!-- Pacote Básico -->
                 <div class="price-card">
-                    <div class="card-image">
-                        <img src="basico.jpg" alt="Restauração Básica">
-                    </div>
+                    <div class="card-image"><img src="../basico.jpg" alt="Restauração Básica"></div>
                     <h3>Pacote Básico</h3>
                     <p class="desc">A forma mais rápida de ver a mágica acontecer em uma memória especial.</p>
                     <div class="price-value">R$ 27,90 <span>/ único</span></div>
@@ -321,12 +191,9 @@
                     <a href="https://buy.stripe.com/cNi00b9ptd085ZZ03D0RG00" class="btn-card">Restaurar 1 Foto</a>
                 </div>
 
-                <!-- Pacote Premium -->
                 <div class="price-card featured">
                     <div class="badge">Mais Popular</div>
-                    <div class="card-image">
-                        <img src="premium.jpg" alt="Restauração Premium">
-                    </div>
+                    <div class="card-image"><img src="../premium.jpg" alt="Restauração Premium"></div>
                     <h3>Pacote Premium</h3>
                     <p class="desc">Ideal para álbuns de família e coleções. O valor de custo por foto despenca.</p>
                     <div class="price-value">R$ 97,90 <span>/ único</span></div>
@@ -339,86 +206,20 @@
                     </ul>
                     <a href="https://buy.stripe.com/6oU00b6dh4tC3RR6s10RG01" class="btn-card">Restaurar 10 Fotos</a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section id="process" class="process">
-        <div class="container">
-            <h2>Como Funciona</h2>
-            <div class="process-grid">
-                
-                <div class="process-item">
-                    <div class="process-icon">💳</div>
-                    <h4>1. Pagamento</h4>
-                    <p>Escolha o pacote ideal e pague com segurança através do nosso checkout blindado da Stripe.</p>
-                </div>
-
-                <div class="process-item">
-                    <div class="process-icon">📱</div>
-                    <h4>2. Envio</h4>
-                    <p>Após a compra, você é redirecionado ao nosso WhatsApp VIP. Basta enviar suas fotos pelo chat.</p>
-                </div>
-
-                <div class="process-item">
-                    <div class="process-icon">🚀</div>
-                    <h4>3. Recebimento</h4>
-                    <p>Nossa equipe aplica a tecnologia 8K e devolvemos suas obras de arte impecáveis no mesmo WhatsApp.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Botão Flutuante de Compartilhamento -->
-    <button id="btn-share" class="float-btn share-float" aria-label="Compartilhar Página">
-        <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-        </svg>
-    </button>
-
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5534998718340?text=Olá!%20Tenho%20dúvidas%20sobre%20a%20restauração%20de%20fotos." class="float-btn whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 32 32" width="32" height="32">
-            <path fill="#FFF" d="M16.05 2.15c-7.7 0-13.9 6.2-13.9 13.9 0 2.45.65 4.85 1.85 6.95L2.5 30l7.15-1.45c2.05 1.1 4.35 1.7 6.8 1.7 7.7 0 13.9-6.2 13.9-13.9 0-7.7-6.2-13.9-13.9-13.9zm0 25.1c-2.1 0-4.1-.55-5.9-1.6l-.4-.25-4.4.9.9-4.25-.3-.45c-1.15-1.85-1.8-3.95-1.8-6.15 0-6.35 5.2-11.55 11.55-11.55 6.35 0 11.55 5.2 11.55 11.55 0 6.35-5.2 11.55-11.55 11.55zm6.3-8.6c-.35-.15-2.05-1-2.35-1.15-.3-.1-.5-.15-.7.15-.2.35-.9 1.15-1.1 1.35-.2.25-.4.25-.75.1-1.6-.75-3.05-1.85-4.2-3.15-.3-.35.05-.3.55-1.3.1-.2.05-.35-.05-.55-.1-.15-.7-1.7-.95-2.35-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.75.35-.9 1-1.25 2.45-.6 3.9 1 2.2 2.65 4.15 4.7 5.4 1.7 1 2.7 1.3 3.9 1.65 1.25.35 2.4.3 3.3.15 1.05-.15 2.05-.85 2.35-1.7.3-.85.3-1.6.2-1.75-.1-.15-.3-.25-.65-.4z"/>
-        </svg>
+    <!-- Botão do WhatsApp com Logo Oficial Corrigida -->
+    <a href="https://wa.me/5534998718340?text=Olá!%20Gostaria%20de%20restaurar%20umas%20fotos." class="float-btn whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 24 24" width="35" height="35" fill="#FFF"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 O Último Humano. Uberlândia/MG.</p>
-            <p>Atendimento humano via WhatsApp.</p>
+            <p>&copy; 2026 Memórias Vivas. Uberlândia/MG.</p>
         </div>
     </footer>
 
-    <!-- Script de Compartilhamento -->
-    <script>
-        document.getElementById('btn-share').addEventListener('click', async () => {
-            const shareData = {
-                title: 'Restauração de Fotos 8K | O Último Humano',
-                text: 'Olha que incrível! Eles restauram fotos antigas e borradas com Inteligência Artificial e entregam em 8K.',
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                try {
-                    await navigator.share(shareData);
-                } catch (err) {
-                    console.log('Compartilhamento cancelado ou falhou', err);
-                }
-            } else {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('Link da página copiado! Agora é só colar e enviar para seus amigos.');
-                }).catch(err => {
-                    console.error('Erro ao copiar o link: ', err);
-                });
-            }
-        });
-    </script>
 </body>
 </html>
