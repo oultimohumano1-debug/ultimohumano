@@ -30,7 +30,7 @@
             position: fixed;
             top: 0; width: 100%;
             padding: 20px 4%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
             z-index: 100;
             display: flex;
             justify-content: space-between;
@@ -53,7 +53,7 @@
         /* Hero Section (Filme Principal) */
         .hero {
             position: relative;
-            height: 85vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop') no-repeat center center/cover;
@@ -63,7 +63,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, #141414 10%, transparent 70%);
+            background: linear-gradient(to right, #141414 15%, rgba(20, 20, 20, 0.4) 100%);
         }
 
         .hero::after {
@@ -78,7 +78,8 @@
             position: relative;
             z-index: 10;
             padding: 0 4%;
-            max-width: 600px;
+            max-width: 650px;
+            width: 100%;
         }
 
         .top-10 {
@@ -115,7 +116,11 @@
             line-height: 1.5;
         }
 
-        .hero-buttons { display: flex; gap: 15px; }
+        .hero-buttons { 
+            display: flex; 
+            gap: 15px; 
+            flex-wrap: wrap; /* Permite que os botões quebrem linha se faltar espaço */
+        }
 
         .btn-play {
             background-color: #fff;
@@ -125,8 +130,10 @@
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: background 0.2s;
+            flex: 1; /* Ocupa espaço igual */
+            min-width: 200px;
         }
         .btn-play:hover { background-color: rgba(255,255,255,0.7); }
 
@@ -138,8 +145,10 @@
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: background 0.2s;
+            flex: 1; /* Ocupa espaço igual */
+            min-width: 200px;
         }
         .btn-info:hover { background-color: rgba(109, 109, 110, 0.4); }
 
@@ -165,6 +174,7 @@
             overflow-x: auto;
             padding-bottom: 20px;
             scrollbar-width: none; 
+            scroll-behavior: smooth;
         }
         .card-slider::-webkit-scrollbar { display: none; }
 
@@ -199,12 +209,67 @@
         .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px;}
         .card-tags { font-size: 0.8rem; color: #a3a3a3; }
 
-        /* Mobile */
+        /* =========================================
+           REGRAS RESPONSIVAS (MOBILE)
+           ========================================= */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content p { font-size: 1rem; }
-            .card { flex: 0 0 250px; }
-            .nav-links { display: none; }
+            header {
+                padding: 15px 4%;
+            }
+            .logo {
+                font-size: 1.5rem; /* Logo um pouco menor */
+            }
+            .nav-links { 
+                display: none; /* Oculta o menu no celular para manter limpo */
+            }
+            
+            .hero {
+                height: auto; /* Permite que o container cresça conforme o texto */
+                min-height: 80vh;
+                padding-top: 120px; /* Dá espaço para o logo no topo */
+                padding-bottom: 60px;
+                background-position: 70% center; /* Ajusta o foco da imagem de fundo */
+            }
+            
+            .hero::before {
+                background: linear-gradient(to right, #141414 40%, rgba(20, 20, 20, 0.6) 100%);
+            }
+
+            .top-10 {
+                font-size: 1rem;
+            }
+
+            .hero-content h1 { 
+                font-size: 2.5rem; 
+                margin-bottom: 10px;
+            }
+            
+            .hero-content p { 
+                font-size: 1.05rem; 
+                margin-bottom: 25px;
+            }
+
+            .hero-buttons { 
+                flex-direction: column; /* Empilha os botões */
+                width: 100%;
+            }
+
+            .btn-play, .btn-info {
+                width: 100%; /* Botões ocupam a largura total da tela */
+                padding: 15px;
+            }
+
+            .row {
+                margin-top: 10px; /* Evita que o carrossel encavale no texto */
+            }
+            
+            .row-title {
+                font-size: 1.2rem;
+            }
+
+            .card { 
+                flex: 0 0 240px; /* Cards ligeiramente menores para caber melhor na tela do celular */
+            }
         }
     </style>
 </head>
@@ -226,7 +291,6 @@
             <h1>Páginas de<br>Alta Conversão</h1>
             <p>Sua agenda lotada não depende de likes. Transforme os cliques do seu Instagram em clientes reais com um ecossistema focado em vendas.</p>
             <div class="hero-buttons">
-                <!-- APONTA PARA A PÁGINA DE SITES -->
                 <a href="sites.html" class="btn-play">
                     ▶ Acessar Solução
                 </a>
@@ -242,7 +306,6 @@
         <h2 class="row-title">Em Alta (Marketing & Estruturas)</h2>
         <div class="card-slider">
             
-            <!-- Card 1 -->
             <a href="sites.html" class="card">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Páginas de Vendas">
                 <div class="card-info">
@@ -252,7 +315,6 @@
                 </div>
             </a>
 
-            <!-- Card 2 -->
             <a href="sites.html" class="card">
                 <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Tráfego Pago">
                 <div class="card-info">
@@ -262,7 +324,6 @@
                 </div>
             </a>
 
-            <!-- Card 3 -->
             <a href="sites.html" class="card">
                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" class="card-img" alt="SEO">
                 <div class="card-info">
@@ -280,7 +341,6 @@
         <h2 class="row-title">Mágica com Inteligência Artificial</h2>
         <div class="card-slider">
             
-            <!-- Card 1: CORRIGIDO PARA restauracao/index.html -->
             <a href="restauracao/index.html" class="card">
                 <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Restauração 8K">
                 <div class="card-info">
@@ -290,7 +350,6 @@
                 </div>
             </a>
 
-            <!-- Card Espaço Livre: CORRIGIDO PARA restauracao/index.html -->
             <a href="restauracao/index.html" class="card">
                 <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center; font-size: 2rem;">+</div>
                 <div class="card-info">
