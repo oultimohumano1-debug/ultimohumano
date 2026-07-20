@@ -53,26 +53,42 @@
         .btn-hero-secondary { display: inline-block; padding: 18px 35px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: #fff; text-align: center; text-decoration: none; border-radius: 4px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: all 0.3s ease; backdrop-filter: blur(5px); letter-spacing: 1px; }
         .btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.2); }
 
-        /* Benefícios/Processo */
+        /* Benefícios/Processo (Imagens Modelo) */
         .benefits { padding: 80px 0; background-color: var(--bg-base); }
         .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
         .benefit-card { padding: 20px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s ease; }
         .benefit-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        
-        .step-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 24px;
-            border: 1px solid #333;
-        }
-
+        .step-image { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 24px; border: 1px solid #333; }
         .benefit-card h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
         .benefit-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;}
 
+        /* Prova Social - Estilo PDFSimpli */
+        .testimonials { padding: 80px 0; background: #050505; border-top: 1px solid #111; overflow: hidden; }
+        .testimonials h2 { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 50px; }
+        .testim-slider { display: flex; gap: 24px; overflow-x: auto; padding: 10px 4% 40px 4%; scrollbar-width: none; }
+        .testim-slider::-webkit-scrollbar { display: none; }
+        .testim-card { 
+            flex: 0 0 350px; 
+            background: #ffffff; /* Fundo branco exatamente como no print */
+            color: #222; 
+            border-radius: 16px; 
+            padding: 30px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            transition: transform 0.3s ease;
+        }
+        .testim-card:hover { transform: translateY(-5px); }
+        .testim-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .testim-avatar { width: 45px; height: 45px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; }
+        .testim-meta h5 { font-size: 1rem; font-weight: 700; margin: 0; color: #111; font-family: 'Inter', sans-serif;}
+        .testim-meta span { font-size: 0.85rem; color: #666; font-family: 'Inter', sans-serif;}
+        .testim-body { font-size: 1rem; line-height: 1.5; margin-bottom: 20px; color: #333; font-family: 'Inter', sans-serif;}
+        .testim-stars { color: #FFB800; font-size: 1.4rem; letter-spacing: 3px; }
+
         /* Preços */
-        .pricing { padding: 80px 0; background: radial-gradient(circle at top, #1a0b2e 0%, #0a0a0a 70%);}
+        .pricing { padding: 80px 0; background: radial-gradient(circle at top, #1a0b2e 0%, #0a0a0a 70%); border-top: 1px solid #111;}
         .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px;}
         .pricing-sub { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 50px auto; font-size: 1.1rem;}
         .pricing-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
@@ -94,30 +110,17 @@
         .price-card.featured .btn-card { background: var(--primary); color: #fff; }
         .price-card.featured .btn-card:hover { box-shadow: 0 0 25px rgba(138, 43, 226, 0.8); }
 
-        /* Botões Flutuantes (WhatsApp Animado + Share) */
-        .float-btn { 
-            position: fixed; 
-            width: 60px; 
-            height: 60px; 
-            right: 30px;
-            border-radius: 50px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            z-index: 1000; 
-            transition: transform 0.3s ease; 
-            border: none; 
-            cursor: pointer; 
-        }
+        /* Botões Flutuantes */
+        .float-btn { position: fixed; width: 60px; height: 60px; right: 30px; border-radius: 50px; display: flex; align-items: center; justify-content: center; z-index: 1000; transition: transform 0.3s ease; border: none; cursor: pointer; }
         .float-btn:hover { transform: scale(1.1); }
         
         /* WhatsApp com Animação de Destaque */
         .whatsapp-float { 
-            bottom: 105px; /* Posição acima do share */
+            bottom: 105px; 
             background-color: #25d366; 
             animation: pulse-wpp 2s infinite; 
+            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
         }
-        
         @keyframes pulse-wpp {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
@@ -125,12 +128,7 @@
         }
 
         /* Botão de Compartilhar */
-        .share-float { 
-            bottom: 30px; /* Posição inferior */
-            background-color: var(--primary); 
-            box-shadow: var(--primary-glow); 
-            color: #fff; 
-        }
+        .share-float { bottom: 30px; background-color: var(--primary); box-shadow: var(--primary-glow); color: #fff; }
         
         footer { padding: 50px 0; text-align: center; color: #555; font-size: 0.85rem;}
 
@@ -144,8 +142,9 @@
             .hero-cta { justify-content: center; }
             .benefits-grid { grid-template-columns: 1fr; gap: 20px;}
             .pricing-grid { flex-direction: column; align-items: center; }
+            .testim-slider { flex-direction: column; padding: 10px 20px; }
+            .testim-card { width: 100%; flex: auto; }
             
-            /* Ajuste dos botões flutuantes no celular */
             .float-btn { width: 55px; height: 55px; right: 20px; }
             .whatsapp-float { bottom: 95px; }
             .share-float { bottom: 20px; }
@@ -161,8 +160,9 @@
     </header>
 
     <section class="hero">
+        <!-- Truque ?v=1 para o vídeo forçar o carregamento -->
         <video autoplay loop muted playsinline class="hero-video-bg">
-            <source src="video.mp4" type="video/mp4">
+            <source src="video.mp4?v=1" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="container">
@@ -184,24 +184,76 @@
             <div class="benefits-grid">
                 
                 <div class="benefit-card">
-                    <img src="modelo1.jpg" alt="Upload de Fotos Antigas" class="step-image">
+                    <img src="modelo1.jpg?v=1" alt="Upload de Fotos Antigas" class="step-image">
                     <h4>Resgate suas Lembranças</h4>
                     <p>Tire uma foto pelo celular ou nos envie os arquivos daquelas imagens antigas, rasgadas ou em preto e branco que contam a sua história.</p>
                 </div>
                 
                 <div class="benefit-card">
-                    <img src="modelo2.jpg" alt="Processo de Restauração com IA" class="step-image">
+                    <img src="modelo2.jpg?v=1" alt="Processo de Restauração com IA" class="step-image">
                     <h4>Inteligência em Ação</h4>
                     <p>Nossa tecnologia atua milimetricamente para remover arranhões, reconstruir detalhes faciais e aplicar colorização realista sem perder a essência.</p>
                 </div>
                 
                 <div class="benefit-card">
-                    <img src="modelo3.jpg" alt="Foto Pronta para Imprimir" class="step-image">
+                    <img src="modelo3.jpg?v=1" alt="Foto Pronta para Imprimir" class="step-image">
                     <h4>Pronta para Emocionar</h4>
                     <p>Receba sua foto em altíssima resolução (8K). O resultado fica perfeito para revelar, emoldurar quadros e presentear a família.</p>
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- NOVA SEÇÃO: PROVA SOCIAL ESTILO PDFSIMPLI -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Veja por que as pessoas confiam em nós</h2>
+        </div>
+        <div class="testim-slider">
+            
+            <div class="testim-card">
+                <div class="testim-header">
+                    <div class="testim-avatar">A</div>
+                    <div class="testim-meta">
+                        <h5>Ana Beatriz</h5>
+                        <span>15 Out, 2025</span>
+                    </div>
+                </div>
+                <div class="testim-body">
+                    "Simplesmente incrível! Mandei uma foto rasgada do meu avô e o resultado me fez chorar. Muito fácil de fazer e atendimento nota 10."
+                </div>
+                <div class="testim-stars">★★★★★</div>
+            </div>
+
+            <div class="testim-card">
+                <div class="testim-header">
+                    <div class="testim-avatar" style="background: #25d366;">C</div>
+                    <div class="testim-meta">
+                        <h5>Carlos Eduardo</h5>
+                        <span>22 Nov, 2025</span>
+                    </div>
+                </div>
+                <div class="testim-body">
+                    "Funcionou exatamente como anunciado. A foto da minha infância ganhou cores perfeitas e a resolução em 8K ficou impecável para imprimir e colocar num quadro."
+                </div>
+                <div class="testim-stars">★★★★★</div>
+            </div>
+
+            <div class="testim-card">
+                <div class="testim-header">
+                    <div class="testim-avatar" style="background: #ff4757;">M</div>
+                    <div class="testim-meta">
+                        <h5>Mariana Costa</h5>
+                        <span>05 Jan, 2026</span>
+                    </div>
+                </div>
+                <div class="testim-body">
+                    "Trabalho rápido e preciso, com certeza usarei novamente! Restauraram a única lembrança fotográfica dos meus pais juntos. Recomendo de olhos fechados."
+                </div>
+                <div class="testim-stars">★★★★★</div>
+            </div>
+
         </div>
     </section>
 
@@ -211,7 +263,8 @@
             <p class="pricing-sub">Sem aplicativos complicados. Você escolhe, nós fazemos o trabalho pesado.</p>
             <div class="pricing-grid">
                 <div class="price-card">
-                    <div class="card-image"><img src="basico.jpg" alt="Restauração Básica"></div>
+                    <!-- Truque ?v=1 para limpar cache da imagem -->
+                    <div class="card-image"><img src="basico.jpg?v=1" alt="Restauração Básica"></div>
                     <h3>Pacote Básico</h3>
                     <p class="desc">A forma mais rápida de ver a mágica acontecer em uma memória especial.</p>
                     <div class="price-value">R$ 27,90 <span>/ único</span></div>
@@ -227,7 +280,8 @@
 
                 <div class="price-card featured">
                     <div class="badge">Mais Popular</div>
-                    <div class="card-image"><img src="premium.jpg" alt="Restauração Premium"></div>
+                    <!-- Truque ?v=1 para limpar cache da imagem -->
+                    <div class="card-image"><img src="premium.jpg?v=1" alt="Restauração Premium"></div>
                     <h3>Pacote Premium</h3>
                     <p class="desc">Ideal para álbuns de família e coleções. O valor de custo por foto despenca.</p>
                     <div class="price-value">R$ 97,90 <span>/ único</span></div>
