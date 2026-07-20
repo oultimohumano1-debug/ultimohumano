@@ -62,14 +62,50 @@
         .benefit-card h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
         .benefit-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;}
 
-        /* Prova Social - Estilo PDFSimpli */
-        .testimonials { padding: 80px 0; background: #050505; border-top: 1px solid #111; overflow: hidden; }
+        /* Prova Social - Carrossel Animado Infinito */
+        .testimonials { padding: 80px 0; background: #050505; border-top: 1px solid #111; overflow: hidden; position: relative;}
         .testimonials h2 { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 50px; }
-        .testim-slider { display: flex; gap: 24px; overflow-x: auto; padding: 10px 4% 40px 4%; scrollbar-width: none; }
-        .testim-slider::-webkit-scrollbar { display: none; }
+        
+        /* Contêiner que esconde o que passa das bordas e cria o gradiente nas laterais */
+        .testim-slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            white-space: nowrap;
+        }
+        .testim-slider::before, .testim-slider::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .testim-slider::before { left: 0; background: linear-gradient(to right, #050505 0%, transparent 100%); }
+        .testim-slider::after { right: 0; background: linear-gradient(to left, #050505 0%, transparent 100%); }
+
+        /* A trilha que se move */
+        .testim-track {
+            display: inline-flex;
+            gap: 24px;
+            padding: 20px 0;
+            /* 40s é a velocidade, linear mantém fluido, infinite faz repetir */
+            animation: scroll-left 50s linear infinite;
+        }
+        .testim-track:hover { animation-play-state: paused; } /* Pausa ao passar o mouse */
+
+        /* Cálculo da animação: Translada -50% (exatamente a metade do conteúdo duplicado) - 12px (metade do gap) para encaixar perfeito */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 12px)); } 
+        }
+
+        /* Os Cartões de Depoimento */
         .testim-card { 
             flex: 0 0 350px; 
-            background: #ffffff; /* Fundo branco exatamente como no print */
+            white-space: normal; /* Sobrescreve o nowrap para o texto quebrar a linha */
+            background: #ffffff; 
             color: #222; 
             border-radius: 16px; 
             padding: 30px; 
@@ -78,13 +114,14 @@
             flex-direction: column; 
             justify-content: space-between; 
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
-        .testim-card:hover { transform: translateY(-5px); }
+        .testim-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(138, 43, 226, 0.3); }
         .testim-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .testim-avatar { width: 45px; height: 45px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; }
+        .testim-avatar { width: 45px; height: 45px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; }
         .testim-meta h5 { font-size: 1rem; font-weight: 700; margin: 0; color: #111; font-family: 'Inter', sans-serif;}
         .testim-meta span { font-size: 0.85rem; color: #666; font-family: 'Inter', sans-serif;}
-        .testim-body { font-size: 1rem; line-height: 1.5; margin-bottom: 20px; color: #333; font-family: 'Inter', sans-serif;}
+        .testim-body { font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; color: #444; font-family: 'Inter', sans-serif;}
         .testim-stars { color: #FFB800; font-size: 1.4rem; letter-spacing: 3px; }
 
         /* Preços */
@@ -142,9 +179,11 @@
             .hero-cta { justify-content: center; }
             .benefits-grid { grid-template-columns: 1fr; gap: 20px;}
             .pricing-grid { flex-direction: column; align-items: center; }
-            .testim-slider { flex-direction: column; padding: 10px 20px; }
-            .testim-card { width: 100%; flex: auto; }
             
+            /* Ajustes Carrossel Mobile */
+            .testim-slider::before, .testim-slider::after { width: 50px; }
+            .testim-card { flex: 0 0 300px; padding: 25px; }
+
             .float-btn { width: 55px; height: 55px; right: 20px; }
             .whatsapp-float { bottom: 95px; }
             .share-float { bottom: 20px; }
@@ -160,7 +199,6 @@
     </header>
 
     <section class="hero">
-        <!-- Truque ?v=1 para o vídeo forçar o carregamento -->
         <video autoplay loop muted playsinline class="hero-video-bg">
             <source src="video.mp4?v=1" type="video/mp4">
         </video>
@@ -205,55 +243,236 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: PROVA SOCIAL ESTILO PDFSIMPLI -->
+    <!-- NOVA SEÇÃO: PROVA SOCIAL COM CARROSSEL ANIMADO INFINITO -->
     <section class="testimonials">
         <div class="container">
             <h2>Veja por que as pessoas confiam em nós</h2>
         </div>
+        
         <div class="testim-slider">
-            
-            <div class="testim-card">
-                <div class="testim-header">
-                    <div class="testim-avatar">A</div>
-                    <div class="testim-meta">
-                        <h5>Ana Beatriz</h5>
-                        <span>15 Out, 2025</span>
+            <!-- Pista que desliza. Para o efeito infinito perfeito, duplicamos os 9 cartões no HTML. Total 18. -->
+            <div class="testim-track">
+                
+                <!-- GRUPO 1 DE CARTÕES -->
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #8a2be2;">A</div>
+                        <div class="testim-meta">
+                            <h5>Ana Beatriz</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
                     </div>
+                    <div class="testim-body">"Simplesmente incrível! Mandei uma foto rasgada do meu avô e o resultado me fez chorar. Muito fácil de fazer e atendimento nota 10."</div>
+                    <div class="testim-stars">★★★★★</div>
                 </div>
-                <div class="testim-body">
-                    "Simplesmente incrível! Mandei uma foto rasgada do meu avô e o resultado me fez chorar. Muito fácil de fazer e atendimento nota 10."
-                </div>
-                <div class="testim-stars">★★★★★</div>
-            </div>
 
-            <div class="testim-card">
-                <div class="testim-header">
-                    <div class="testim-avatar" style="background: #25d366;">C</div>
-                    <div class="testim-meta">
-                        <h5>Carlos Eduardo</h5>
-                        <span>22 Nov, 2025</span>
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #25d366;">C</div>
+                        <div class="testim-meta">
+                            <h5>Carlos Eduardo</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
                     </div>
+                    <div class="testim-body">"Funcionou exatamente como anunciado. A foto da minha infância ganhou cores perfeitas e a resolução em 8K ficou impecável para colocar num quadro."</div>
+                    <div class="testim-stars">★★★★★</div>
                 </div>
-                <div class="testim-body">
-                    "Funcionou exatamente como anunciado. A foto da minha infância ganhou cores perfeitas e a resolução em 8K ficou impecável para imprimir e colocar num quadro."
-                </div>
-                <div class="testim-stars">★★★★★</div>
-            </div>
 
-            <div class="testim-card">
-                <div class="testim-header">
-                    <div class="testim-avatar" style="background: #ff4757;">M</div>
-                    <div class="testim-meta">
-                        <h5>Mariana Costa</h5>
-                        <span>05 Jan, 2026</span>
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #ff4757;">M</div>
+                        <div class="testim-meta">
+                            <h5>Mariana Costa</h5>
+                            <span>Via Instagram</span>
+                        </div>
                     </div>
+                    <div class="testim-body">"Trabalho rápido e preciso. Restauraram a única lembrança fotográfica dos meus pais juntos. Recomendo de olhos fechados."</div>
+                    <div class="testim-stars">★★★★★</div>
                 </div>
-                <div class="testim-body">
-                    "Trabalho rápido e preciso, com certeza usarei novamente! Restauraram a única lembrança fotográfica dos meus pais juntos. Recomendo de olhos fechados."
-                </div>
-                <div class="testim-stars">★★★★★</div>
-            </div>
 
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #ffa502;">R</div>
+                        <div class="testim-meta">
+                            <h5>Rafael Souza</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Confesso que achei que era golpe ou ia ficar artificial, mas me surpreendi. A foto de casamento da minha mãe de 1970 ficou como se tivesse sido tirada ontem!"</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #ff7f50;">J</div>
+                        <div class="testim-meta">
+                            <h5>Juliana Freitas</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Dei de presente de aniversário para a minha avó a foto dela de 15 anos restaurada e colorida. Ela chorou muito! Melhor investimento que já fiz."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #2ed573;">M</div>
+                        <div class="testim-meta">
+                            <h5>Marcos Paulo</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"A foto tinha manchas de umidade e o rosto do meu tio estava quase apagado. A inteligência artificial conseguiu reconstruir os traços. Trabalho de mestre!"</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #1e90ff;">F</div>
+                        <div class="testim-meta">
+                            <h5>Fernanda Lima</h5>
+                            <span>Via Instagram</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Já tinha tentado usar esses apps gratuitos de celular e a foto ficava uma porcaria, toda borrada. O serviço de vocês é outro nível, profissionalismo puro."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #3742fa;">T</div>
+                        <div class="testim-meta">
+                            <h5>Thiago Mendes</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Recuperaram as fotos do casamento dos meus avós que estavam completamente amareladas e com rasgos nas pontas. O arquivo chegou super rápido."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #eccc68;">C</div>
+                        <div class="testim-meta">
+                            <h5>Camila Alves</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Excelente! O suporte no WhatsApp foi super atencioso, tirei todas as dúvidas antes de pagar. O resultado final ficou perfeito. Vou mandar mais fotos."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+
+                <!-- GRUPO 2 DE CARTÕES (DUPLICAÇÃO EXATA PARA O LOOP INVISÍVEL FUNCIONAR) -->
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #8a2be2;">A</div>
+                        <div class="testim-meta">
+                            <h5>Ana Beatriz</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Simplesmente incrível! Mandei uma foto rasgada do meu avô e o resultado me fez chorar. Muito fácil de fazer e atendimento nota 10."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #25d366;">C</div>
+                        <div class="testim-meta">
+                            <h5>Carlos Eduardo</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Funcionou exatamente como anunciado. A foto da minha infância ganhou cores perfeitas e a resolução em 8K ficou impecável para colocar num quadro."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #ff4757;">M</div>
+                        <div class="testim-meta">
+                            <h5>Mariana Costa</h5>
+                            <span>Via Instagram</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Trabalho rápido e preciso. Restauraram a única lembrança fotográfica dos meus pais juntos. Recomendo de olhos fechados."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #ffa502;">R</div>
+                        <div class="testim-meta">
+                            <h5>Rafael Souza</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Confesso que achei que era golpe ou ia ficar artificial, mas me surpreendi. A foto de casamento da minha mãe de 1970 ficou como se tivesse sido tirada ontem!"</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #ff7f50;">J</div>
+                        <div class="testim-meta">
+                            <h5>Juliana Freitas</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Dei de presente de aniversário para a minha avó a foto dela de 15 anos restaurada e colorida. Ela chorou muito! Melhor investimento que já fiz."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #2ed573;">M</div>
+                        <div class="testim-meta">
+                            <h5>Marcos Paulo</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"A foto tinha manchas de umidade e o rosto do meu tio estava quase apagado. A inteligência artificial conseguiu reconstruir os traços. Trabalho de mestre!"</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #1e90ff;">F</div>
+                        <div class="testim-meta">
+                            <h5>Fernanda Lima</h5>
+                            <span>Via Instagram</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Já tinha tentado usar esses apps gratuitos de celular e a foto ficava uma porcaria, toda borrada. O serviço de vocês é outro nível, profissionalismo puro."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #3742fa;">T</div>
+                        <div class="testim-meta">
+                            <h5>Thiago Mendes</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Recuperaram as fotos do casamento dos meus avós que estavam completamente amareladas e com rasgos nas pontas. O arquivo chegou super rápido."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+
+                <div class="testim-card">
+                    <div class="testim-header">
+                        <div class="testim-avatar" style="background: #eccc68;">C</div>
+                        <div class="testim-meta">
+                            <h5>Camila Alves</h5>
+                            <span>Via WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="testim-body">"Excelente! O suporte no WhatsApp foi super atencioso, tirei todas as dúvidas antes de pagar. O resultado final ficou perfeito. Vou mandar mais fotos."</div>
+                    <div class="testim-stars">★★★★★</div>
+                </div>
+                
+            </div>
         </div>
     </section>
 
@@ -263,7 +482,6 @@
             <p class="pricing-sub">Sem aplicativos complicados. Você escolhe, nós fazemos o trabalho pesado.</p>
             <div class="pricing-grid">
                 <div class="price-card">
-                    <!-- Truque ?v=1 para limpar cache da imagem -->
                     <div class="card-image"><img src="basico.jpg?v=1" alt="Restauração Básica"></div>
                     <h3>Pacote Básico</h3>
                     <p class="desc">A forma mais rápida de ver a mágica acontecer em uma memória especial.</p>
@@ -280,7 +498,6 @@
 
                 <div class="price-card featured">
                     <div class="badge">Mais Popular</div>
-                    <!-- Truque ?v=1 para limpar cache da imagem -->
                     <div class="card-image"><img src="premium.jpg?v=1" alt="Restauração Premium"></div>
                     <h3>Pacote Premium</h3>
                     <p class="desc">Ideal para álbuns de família e coleções. O valor de custo por foto despenca.</p>
