@@ -90,12 +90,10 @@
             display: inline-flex;
             gap: 24px;
             padding: 20px 0;
-            /* 40s é a velocidade, linear mantém fluido, infinite faz repetir */
             animation: scroll-left 50s linear infinite;
         }
-        .testim-track:hover { animation-play-state: paused; } /* Pausa ao passar o mouse */
+        .testim-track:hover { animation-play-state: paused; }
 
-        /* Cálculo da animação: Translada -50% (exatamente a metade do conteúdo duplicado) - 12px (metade do gap) para encaixar perfeito */
         @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-50% - 12px)); } 
@@ -104,7 +102,7 @@
         /* Os Cartões de Depoimento */
         .testim-card { 
             flex: 0 0 350px; 
-            white-space: normal; /* Sobrescreve o nowrap para o texto quebrar a linha */
+            white-space: normal;
             background: #ffffff; 
             color: #222; 
             border-radius: 16px; 
@@ -189,6 +187,24 @@
             .share-float { bottom: 20px; }
         }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '898720816030681');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=898720816030681&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -243,14 +259,13 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: PROVA SOCIAL COM CARROSSEL ANIMADO INFINITO -->
+    <!-- PROVA SOCIAL COM CARROSSEL ANIMADO INFINITO -->
     <section class="testimonials">
         <div class="container">
             <h2>Veja por que as pessoas confiam em nós</h2>
         </div>
         
         <div class="testim-slider">
-            <!-- Pista que desliza. Para o efeito infinito perfeito, duplicamos os 9 cartões no HTML. Total 18. -->
             <div class="testim-track">
                 
                 <!-- GRUPO 1 DE CARTÕES -->
@@ -363,7 +378,7 @@
                 </div>
 
 
-                <!-- GRUPO 2 DE CARTÕES (DUPLICAÇÃO EXATA PARA O LOOP INVISÍVEL FUNCIONAR) -->
+                <!-- GRUPO 2 DE CARTÕES (DUPLICAÇÃO EXATA) -->
                 <div class="testim-card">
                     <div class="testim-header">
                         <div class="testim-avatar" style="background: #8a2be2;">A</div>
